@@ -25,6 +25,20 @@ class TestesBaseDados {
 
         return id
     }
+    private fun getCidadeBaseDados(tabela: TabelaCidades,id: Long): Cidade {
+        val cursor = tabela.query(
+                TabelaCidades.TODAS_COLUNAS,
+                "${BaseColumns._ID}=?",
+                arrayOf(id.toString()),
+                null, null, null
+        )
+
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        val cidadeBd = Cidade.fromCursor(cursor)
+        return cidadeBd
+    }
 
 
     @Before
@@ -42,46 +56,62 @@ class TestesBaseDados {
     @Test
     fun consegueInserirCidades() {
         val db = getBdCovidOpenHelper().writableDatabase
-        val TabelaCidades = TabelaCidades(db)
+        val tabelaCidades = TabelaCidades(db)
 
         val cidade = Cidade(nome = "Lisboa")
-        cidade.id = insereCidade(TabelaCidades, cidade)
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        assertEquals(cidade, getCidadeBaseDados(tabelaCidades, cidade.id))
 
         db.close()
     }
     @Test
     fun consegueAlterarCidades() {
         val db = getBdCovidOpenHelper().writableDatabase
-        val TabelaCidades = TabelaCidades(db)
+        val tabelaCidades = TabelaCidades(db)
 
         val cidade = Cidade(nome = "Guarda")
-        cidade.id = insereCidade(TabelaCidades, cidade)
+        cidade.id = insereCidade(tabelaCidades, cidade)
 
         cidade.nome = "Guarda"
 
-        val registosAlterados = TabelaCidades.update(
+        val registosAlterados = tabelaCidades.update(
             cidade.toContentValues(),
             "${BaseColumns._ID}=?",
             arrayOf(cidade.id.toString())
         )
 
         assertEquals(1, registosAlterados)
+        assertEquals(cidade, getCidadeBaseDados(tabelaCidades, cidade.id))
 
         db.close()
     }
     @Test
     fun consegueEliminarCidades(){
         val db = getBdCovidOpenHelper().writableDatabase
-        val TabelaCidades = TabelaCidades(db)
+        val tabelaCidades = TabelaCidades(db)
 
         val cidade = Cidade(nome = "Aveiro")
-        cidade.id = insereCidade(TabelaCidades, cidade)
+        cidade.id = insereCidade(tabelaCidades, cidade)
 
-        val registosEliminados = TabelaCidades.delete(
+        val registosEliminados = tabelaCidades.delete(
             "${BaseColumns._ID}=?",
             arrayOf(cidade.id.toString())
         )
         assertEquals(1, registosEliminados)
+       
+
+        db.close()
+    }
+    @Test
+    fun consegueLerCidades(){
+        val db = getBdCovidOpenHelper().writableDatabase
+        val tabelaCidades = TabelaCidades(db)
+
+        val cidade = Cidade(nome = "Braga")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        assertEquals(cidade, getCidadeBaseDados(tabelaCidades, cidade.id))
 
         db.close()
     }
