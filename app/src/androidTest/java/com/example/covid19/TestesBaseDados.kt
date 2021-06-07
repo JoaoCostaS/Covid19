@@ -17,17 +17,27 @@ import org.junit.Before
 @RunWith(AndroidJUnit4::class)
 class TestesBaseDados {
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
+    private fun getBdCovidOpenHelper() = BdCovidOpenHelper(getAppContext())
 
     @Before
-    fun apagaBaseDados(){
+    fun apagaBaseDados() {
         getAppContext().deleteDatabase(BdCovidOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
-    fun consegueAbrirBaseDados(){
-        val openHelper = BdCovidOpenHelper(getAppContext())
-        val db = openHelper.readableDatabase
+    fun consegueAbrirBaseDados() {
+        val db = getBdCovidOpenHelper().readableDatabase
         assert(db.isOpen)
         db.close()
     }
+
+    @Test
+    fun consegueInserirCidades() {
+        val db = getBdCovidOpenHelper().writableDatabase
+        val TabelaCidades = TabelaCidades(db)
+
+        val cidade = Cidade(nome = "Lisboa")
+        db.close()
+    }
 }
+
