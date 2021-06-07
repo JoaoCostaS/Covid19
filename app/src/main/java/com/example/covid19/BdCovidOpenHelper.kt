@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper
 class BdCovidOpenHelper(context: Context?, )
     : SQLiteOpenHelper(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS) {
     override fun onCreate(db: SQLiteDatabase?) {
-        TODO("Not yet implemented")
+        if (db != null) {
+            TabelaCidades(db).cria()
+        }
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
