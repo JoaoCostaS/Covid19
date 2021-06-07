@@ -1,5 +1,6 @@
 package com.example.covid19
 
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -18,6 +19,13 @@ import org.junit.Before
 class TestesBaseDados {
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
     private fun getBdCovidOpenHelper() = BdCovidOpenHelper(getAppContext())
+    private fun insereCidade(tabela: TabelaCidades, cidade: Cidade): Long {
+        val id = tabela.insert(cidade.toContentValues())
+        assertNotEquals(-1, id)
+
+        return id
+    }
+
 
     @Before
     fun apagaBaseDados() {
@@ -36,10 +44,29 @@ class TestesBaseDados {
         val db = getBdCovidOpenHelper().writableDatabase
         val TabelaCidades = TabelaCidades(db)
 
-        val id = TabelaCidades.insert(Cidade(nome = "Lisboa").toContentValues())
+        val cidade = Cidade(nome = "Lisboa")
+        cidade.id = insereCidade(TabelaCidades, cidade)
 
-        assertNotEquals(-1, id)
-        
+        db.close()
+    }
+    @Test
+    fun consegueAlterarCidades() {
+        val db = getBdCovidOpenHelper().writableDatabase
+        val TabelaCidades = TabelaCidades(db)
+
+        val cidade = Cidade(nome = "Guarda")
+        cidade.id = insereCidade(TabelaCidades, cidade)
+
+        cidade.nome = "Guarda"
+
+        val registosAlterados = TabelaCidades.update(
+            cidade.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(cidade.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+
         db.close()
     }
 }
