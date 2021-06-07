@@ -36,7 +36,10 @@ class TestesBaseDados {
         val db = getBdCovidOpenHelper().writableDatabase
         val TabelaCidades = TabelaCidades(db)
 
-        val cidade = Cidade(nome = "Lisboa")
+        val id = TabelaCidades.insert(Cidade(nome = "Lisboa").toContentValues())
+
+        assertNotEquals(-1, id)
+        
         db.close()
     }
 }
