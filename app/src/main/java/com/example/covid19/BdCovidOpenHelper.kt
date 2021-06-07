@@ -10,6 +10,7 @@ class BdCovidOpenHelper(context: Context?, )
         if (db != null) {
             TabelaCidades(db).cria()
             TabelaCasos(db).cria()
+            TabelaVacinacao(db).cria()
         }
     }
 
