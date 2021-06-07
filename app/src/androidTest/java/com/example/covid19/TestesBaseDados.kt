@@ -69,5 +69,21 @@ class TestesBaseDados {
 
         db.close()
     }
+    @Test
+    fun consegueEliminarCidades(){
+        val db = getBdCovidOpenHelper().writableDatabase
+        val TabelaCidades = TabelaCidades(db)
+
+        val cidade = Cidade(nome = "Aveiro")
+        cidade.id = insereCidade(TabelaCidades, cidade)
+
+        val registosEliminados = TabelaCidades.delete(
+            "${BaseColumns._ID}=?",
+            arrayOf(cidade.id.toString())
+        )
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
 }
 
