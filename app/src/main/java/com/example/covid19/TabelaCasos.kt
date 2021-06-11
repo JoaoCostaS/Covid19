@@ -23,15 +23,15 @@ class TabelaCasos(db: SQLiteDatabase) {
         )
     }
     fun insert(values: ContentValues): Long {
-        return db.insert(TabelaCidades.NOME_TABELA, null, values)
+        return db.insert(NOME_TABELA, null, values)
     }
 
     fun update(values: ContentValues, whereClause: String, whereArgs: Array<String>): Int {
-        return db.update(TabelaCidades.NOME_TABELA, values, whereClause, whereArgs)
+        return db.update(NOME_TABELA, values, whereClause, whereArgs)
     }
 
     fun delete(whereClause: String, whereArgs: Array<String>): Int {
-        return db.delete(TabelaCidades.NOME_TABELA, whereClause, whereArgs)
+        return db.delete(NOME_TABELA, whereClause, whereArgs)
     }
 
     fun query(
@@ -42,7 +42,7 @@ class TabelaCasos(db: SQLiteDatabase) {
         having: String,
         orderBy: String
     ): Cursor? {
-        return db.query(TabelaCidades.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
     companion object{
