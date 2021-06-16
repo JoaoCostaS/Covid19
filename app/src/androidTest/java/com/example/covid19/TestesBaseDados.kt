@@ -9,6 +9,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.util.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -57,6 +58,7 @@ class TestesBaseDados {
 
         return Caso.fromCursor(cursor)
     }
+    private fun Data(ano: Int, mes: Int, dia: Int) = Date(ano -1900, mes -1, dia)
 
 
     @Before
@@ -142,13 +144,14 @@ class TestesBaseDados {
         cidade.id = insereCidade(tabelaCidades, cidade)
 
         val tabelaCasos = TabelaCasos(db)
-        val caso = Caso(infetados = 3415, ativos = 60, obitos = 53, id_cidades = cidade.id)
+        val caso = Caso(infetados = 3415, ativos = 60, obitos = 53, data_vacina = Data(2020, 5, 20), id_cidades = cidade.id)
         caso.id = insereCaso(tabelaCasos, caso)
 
         assertEquals(caso, getCasoBaseDados(tabelaCasos, caso.id))
 
         db.close()
     }
+
 
 }
 

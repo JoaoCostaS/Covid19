@@ -3,15 +3,16 @@ package com.example.covid19
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.util.*
 
-data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obitos: Int, /*var data: date*/var id_cidades: Long) {
+data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obitos: Int, var data_vacina: Date, var id_cidades: Long) {
     fun toContentValues(): ContentValues {
         val valores = ContentValues().apply {
-            put(TabelaCasos.CAMPO_INFETADOS, infetados)
-            put(TabelaCasos.CAMPO_ATIVOS, ativos)
-            put(TabelaCasos.CAMPO_OBITOS, obitos)
-           // put(TabelaCasos.CAMPO_DATA, data)
-            put(TabelaCasos.CAMPO_ID_CIDADES, id_cidades)
+            put(TabelaCasos.CAMPO_INFETADOS, infetados.toInt())
+            put(TabelaCasos.CAMPO_ATIVOS, ativos.toInt())
+            put(TabelaCasos.CAMPO_OBITOS, obitos.toInt())
+            put(TabelaCasos.CAMPO_DATA_VACINA, data_vacina.time)
+            put(TabelaCasos.CAMPO_ID_CIDADES, id_cidades.toLong())
         }
         return valores
     }
@@ -22,17 +23,17 @@ data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obi
             val colInfetados = cursor.getColumnIndex(TabelaCasos.CAMPO_INFETADOS)
             val colAtivos = cursor.getColumnIndex(TabelaCasos.CAMPO_ATIVOS)
             val colObitos = cursor.getColumnIndex(TabelaCasos.CAMPO_OBITOS)
-            //val colData = cursor.getColumnIndex(TabelaCasos.CAMPO_DATA)
+            val colData = cursor.getColumnIndex(TabelaCasos.CAMPO_DATA_VACINA)
             val colIdCidade = cursor.getColumnIndex(TabelaCasos.CAMPO_ID_CIDADES)
 
             val id = cursor.getLong(colId)
             val infetados = cursor.getInt(colInfetados)
             val ativos = cursor.getInt(colAtivos)
             val obitos = cursor.getInt(colObitos)
-           // val data = cursor.getColumnIndex(colData)
+            val data_vacina = Date(cursor.getLong(colData))
             val id_cidades = cursor.getLong(colIdCidade)
 
-            return Caso(id, infetados, ativos, obitos, id_cidades)
+            return Caso(id, infetados, ativos, obitos, data_vacina, id_cidades)
         }
     }
 }
