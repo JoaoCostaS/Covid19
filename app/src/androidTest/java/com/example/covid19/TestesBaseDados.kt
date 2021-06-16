@@ -25,6 +25,12 @@ class TestesBaseDados {
 
         return id
     }
+    private fun insereCaso(tabela: TabelaCasos, caso: Caso): Long {
+        val id = tabela.insert(caso.toContentValues())
+        assertNotEquals(-1, id)
+
+        return id
+    }
     private fun getCidadeBaseDados(tabela: TabelaCidades,id: Long): Cidade {
         val cursor = tabela.query(
                 TabelaCidades.TODAS_COLUNAS,
@@ -36,8 +42,20 @@ class TestesBaseDados {
         assertNotNull(cursor)
         assert(cursor!!.moveToNext())
 
-        val cidadeBd = Cidade.fromCursor(cursor)
-        return cidadeBd
+        return Cidade.fromCursor(cursor)
+    }
+    private fun getCasoBaseDados(tabela: TabelaCasos,id: Long): Caso {
+        val cursor = tabela.query(
+                TabelaCasos.TODAS_COLUNAS,
+                "${BaseColumns._ID}=?",
+                arrayOf(id.toString()),
+                null, null, null
+        )
+
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return Caso.fromCursor(cursor)
     }
 
 
@@ -115,5 +133,22 @@ class TestesBaseDados {
 
         db.close()
     }
+    @Test
+    fun consegueInserirCasos() {
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+        val cidade = Cidade(nome = "Faro")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaCasos = TabelaCasos(db)
+        val caso = Caso(infetados = 3415, ativos = 60, obitos = 53, id_cidades = cidade.id)
+        caso.id = insereCaso(tabelaCasos, caso)
+
+        assertEquals(caso, getCasoBaseDados(tabelaCasos, caso.id))
+
+        db.close()
+    }
+
 }
 

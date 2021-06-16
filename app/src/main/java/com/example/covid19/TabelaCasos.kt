@@ -15,7 +15,7 @@ class TabelaCasos(db: SQLiteDatabase) {
                     CAMPO_INFETADOS + " INTEGER, " +
                     CAMPO_ATIVOS + " INTEGER, " +
                     CAMPO_OBITOS + " INTEGER, " +
-                    CAMPO_DATA + " INTEGER NOT NULL, " +
+                    CAMPO_DATA + " INTEGER , " +
                     CAMPO_ID_CIDADES + " INTEGER NOT NULL," +
                     " FOREIGN KEY(" + CAMPO_ID_CIDADES + ") " +
                     " REFERENCES " + TabelaCidades.NOME_TABELA +
@@ -36,11 +36,11 @@ class TabelaCasos(db: SQLiteDatabase) {
 
     fun query(
         columns: Array<String>,
-        selection: String,
-        selectionArgs: Array<String>,
-        groupBy: String,
-        having: String,
-        orderBy: String
+        selection: String?,
+        selectionArgs: Array<String>?,
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
     ): Cursor? {
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -52,5 +52,7 @@ class TabelaCasos(db: SQLiteDatabase) {
         const val CAMPO_OBITOS = "obitos"
         const val CAMPO_DATA = "data"
         const val CAMPO_ID_CIDADES = "id_cidades"
+
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_INFETADOS, CAMPO_ATIVOS, CAMPO_OBITOS, CAMPO_DATA, CAMPO_ID_CIDADES)
     }
 }
