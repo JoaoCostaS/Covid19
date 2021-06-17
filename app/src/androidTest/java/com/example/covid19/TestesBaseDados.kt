@@ -205,6 +205,23 @@ class TestesBaseDados {
 
         db.close()
     }
+    @Test
+    fun consegueLerCasos(){
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+
+        val cidade = Cidade(nome = "Figueira")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaCasos = TabelaCasos(db)
+        val caso = Caso(infetados = 2000, ativos = 12, obitos = 155, data = Data(2021, 5, 25), id_cidades = cidade.id)
+        caso.id = insereCaso(tabelaCasos, caso)
+
+        assertEquals(caso, getCasoBaseDados(tabelaCasos, caso.id))
+
+        db.close()
+    }
 
 }
 
