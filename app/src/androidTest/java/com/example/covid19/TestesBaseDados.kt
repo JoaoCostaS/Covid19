@@ -144,14 +144,67 @@ class TestesBaseDados {
         cidade.id = insereCidade(tabelaCidades, cidade)
 
         val tabelaCasos = TabelaCasos(db)
-        val caso = Caso(infetados = 3415, ativos = 60, obitos = 53, data_vacina = Data(2020, 5, 20), id_cidades = cidade.id)
+        val caso = Caso(infetados = 3415, ativos = 60, obitos = 53, data = Data(2020, 5, 20), id_cidades = cidade.id)
         caso.id = insereCaso(tabelaCasos, caso)
 
         assertEquals(caso, getCasoBaseDados(tabelaCasos, caso.id))
 
         db.close()
     }
+    @Test
+    fun consegueAlterarCasos() {
+        val db = getBdCovidOpenHelper().writableDatabase
 
+        val tabelaCidades = TabelaCidades(db)
+
+        val cidadeCovilha = Cidade(nome = "Covilha")
+        cidadeCovilha.id = insereCidade(tabelaCidades, cidadeCovilha)
+
+        val cidadePorto = Cidade(nome = "Porto")
+        cidadePorto.id = insereCidade(tabelaCidades, cidadePorto)
+
+        val tabelaCasos = TabelaCasos(db)
+        val caso = Caso(infetados = 5000, ativos = 100, obitos = 10, data = Data(2020, 5, 20), id_cidades = cidadeCovilha.id)
+        caso.id = insereCaso(tabelaCasos, caso)
+
+
+        caso.infetados = 5500
+        caso.ativos = 150
+        caso.obitos =15
+        caso.id_cidades = cidadePorto.id
+
+        val registosAlterados = tabelaCasos.update(
+                caso.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf(caso.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+        assertEquals(caso, getCasoBaseDados(tabelaCasos, caso.id))
+
+        db.close()
+    }
+    @Test
+    fun consegueEliminarCasos(){
+        val db = getBdCovidOpenHelper().writableDatabase
+        val tabelaCidades = TabelaCidades(db)
+
+        val cidade = Cidade(nome = "Peniche")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaCasos = TabelaCasos(db)
+        val caso = Caso(infetados = 10, ativos = 1500, obitos = 0, data = Data(1950, 10, 30), id_cidades = cidade.id)
+        caso.id = insereCaso(tabelaCasos, caso)
+
+        val registosEliminados = tabelaCasos.delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(caso.id.toString())
+        )
+        assertEquals(1, registosEliminados)
+
+
+        db.close()
+    }
 
 }
 

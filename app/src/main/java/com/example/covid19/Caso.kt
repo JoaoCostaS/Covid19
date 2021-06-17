@@ -5,13 +5,13 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import java.util.*
 
-data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obitos: Int, var data_vacina: Date, var id_cidades: Long) {
+data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obitos: Int, var data: Date, var id_cidades: Long) {
     fun toContentValues(): ContentValues {
         val valores = ContentValues().apply {
             put(TabelaCasos.CAMPO_INFETADOS, infetados.toInt())
             put(TabelaCasos.CAMPO_ATIVOS, ativos.toInt())
             put(TabelaCasos.CAMPO_OBITOS, obitos.toInt())
-            put(TabelaCasos.CAMPO_DATA_VACINA, data_vacina.time)
+            put(TabelaCasos.CAMPO_DATA, data.time)
             put(TabelaCasos.CAMPO_ID_CIDADES, id_cidades.toLong())
         }
         return valores
@@ -23,7 +23,7 @@ data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obi
             val colInfetados = cursor.getColumnIndex(TabelaCasos.CAMPO_INFETADOS)
             val colAtivos = cursor.getColumnIndex(TabelaCasos.CAMPO_ATIVOS)
             val colObitos = cursor.getColumnIndex(TabelaCasos.CAMPO_OBITOS)
-            val colData = cursor.getColumnIndex(TabelaCasos.CAMPO_DATA_VACINA)
+            val colData = cursor.getColumnIndex(TabelaCasos.CAMPO_DATA)
             val colIdCidade = cursor.getColumnIndex(TabelaCasos.CAMPO_ID_CIDADES)
 
             val id = cursor.getLong(colId)
