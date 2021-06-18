@@ -290,5 +290,26 @@ class TestesBaseDados {
 
         db.close()
     }
+    @Test
+    fun consegueEliminarVacinas(){
+        val db = getBdCovidOpenHelper().writableDatabase
+        val tabelaCidades = TabelaCidades(db)
+
+        val cidade = Cidade(nome = "Montemor")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaVacinacao = TabelaVacinacao(db)
+        val vacina = Vacina(vacinados = 300, naovacinados = 3500, data_vacina = Data(2021, 5, 20), id_cidades = cidade.id)
+        vacina.id = insereVacina(tabelaVacinacao, vacina)
+
+        val registosEliminados = tabelaVacinacao.delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(vacina.id.toString())
+        )
+        assertEquals(1, registosEliminados)
+
+
+        db.close()
+    }
 }
 
