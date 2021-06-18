@@ -258,9 +258,37 @@ class TestesBaseDados {
 
         db.close()
     }
-    
+    @Test
+    fun consegueAlterarVacinas() {
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+
+        val cidadeAveiro = Cidade(nome = "Aveiro")
+        cidadeAveiro.id = insereCidade(tabelaCidades, cidadeAveiro)
+
+        val cidadeChaves = Cidade(nome = "Chaves")
+        cidadeChaves.id = insereCidade(tabelaCidades, cidadeChaves)
+
+        val tabelaVacinacao = TabelaVacinacao(db)
+        val vacina = Vacina(vacinados = 200, naovacinados = 4300, data_vacina = Data(2021, 6, 18), id_cidades = cidadeAveiro.id)
+        vacina.id = insereVacina(tabelaVacinacao, vacina)
 
 
+        vacina.vacinados = 210
+        vacina.naovacinados = 4350
+        vacina.id_cidades = cidadeChaves.id
 
+        val registosAlterados = tabelaVacinacao.update(
+                vacina.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf(vacina.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+        assertEquals(vacina, getVacinaBaseDados(tabelaVacinacao, vacina.id))
+
+        db.close()
+    }
 }
 
