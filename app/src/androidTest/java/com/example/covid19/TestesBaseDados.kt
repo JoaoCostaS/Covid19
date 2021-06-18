@@ -311,5 +311,22 @@ class TestesBaseDados {
 
         db.close()
     }
+    @Test
+    fun consegueLerVacinas(){
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+
+        val cidade = Cidade(nome = "Idanha")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaVacinacao = TabelaVacinacao(db)
+        val vacina = Vacina(vacinados = 1000, naovacinados = 2000, data_vacina = Data(2021, 6, 20), id_cidades = cidade.id)
+        vacina.id = insereVacina(tabelaVacinacao, vacina)
+
+        assertEquals(vacina, getVacinaBaseDados(tabelaVacinacao, vacina.id))
+
+        db.close()
+    }
 }
 
