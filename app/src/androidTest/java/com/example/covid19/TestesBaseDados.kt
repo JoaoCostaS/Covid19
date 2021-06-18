@@ -20,6 +20,7 @@ import java.util.*
 class TestesBaseDados {
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
     private fun getBdCovidOpenHelper() = BdCovidOpenHelper(getAppContext())
+
     private fun insereCidade(tabela: TabelaCidades, cidade: Cidade): Long {
         val id = tabela.insert(cidade.toContentValues())
         assertNotEquals(-1, id)
@@ -28,6 +29,12 @@ class TestesBaseDados {
     }
     private fun insereCaso(tabela: TabelaCasos, caso: Caso): Long {
         val id = tabela.insert(caso.toContentValues())
+        assertNotEquals(-1, id)
+
+        return id
+    }
+    private fun insereVacina(tabela: TabelaVacinacao, vacina: Vacina): Long {
+        val id = tabela.insert(vacina.toContentValues())
         assertNotEquals(-1, id)
 
         return id
@@ -57,6 +64,19 @@ class TestesBaseDados {
         assert(cursor!!.moveToNext())
 
         return Caso.fromCursor(cursor)
+    }
+    private fun getVacinaBaseDados(tabela: TabelaVacinacao,id: Long): Vacina {
+        val cursor = tabela.query(
+                TabelaVacinacao.TODAS_COLUNAS,
+                "${BaseColumns._ID}=?",
+                arrayOf(id.toString()),
+                null, null, null
+        )
+
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return Vacina.fromCursor(cursor)
     }
     private fun Data(ano: Int, mes: Int, dia: Int) = Date(ano -1900, mes -1, dia)
 
@@ -222,6 +242,25 @@ class TestesBaseDados {
 
         db.close()
     }
+    @Test
+    fun consegueInserirVacinas() {
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+        val cidade = Cidade(nome = "Cascais")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaVacina = TabelaVacinacao(db)
+        val vacina = Vacina(vacinados = 150, naovacinados = 4500, data_vacina = Data(2021, 6, 17), id_cidades = cidade.id)
+        vacina.id = insereVacina(tabelaVacina, vacina)
+
+        assertEquals(vacina, getVacinaBaseDados (tabelaVacina, vacina.id))
+
+        db.close()
+    }
+    
+
+
 
 }
 
