@@ -14,7 +14,7 @@ class TabelaVacinacao (db: SQLiteDatabase) {
                     BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     CAMPO_VACINADOS + " INTEGER, " +
                     CAMPO_NAOVACINADOS + " INTEGER, " +
-                    CAMPO_DATA + " INTEGER NOT NULL, " +
+                    CAMPO_DATA_VACINA + " INTEGER NOT NULL, " +
                     CAMPO_ID_CIDADES + " LONG NOT NULL," +
                     " FOREIGN KEY( " + CAMPO_ID_CIDADES + ") " +
                     " REFERENCES " + TabelaCidades.NOME_TABELA +
@@ -48,7 +48,7 @@ class TabelaVacinacao (db: SQLiteDatabase) {
         const val NOME_TABELA = "vacinacao"
         const val CAMPO_VACINADOS = "vacinados"
         const val CAMPO_NAOVACINADOS = "naovacinados"
-        const val CAMPO_DATA = "data"
+        const val CAMPO_DATA_VACINA = "data_vacina"
         const val CAMPO_ID_CIDADES = "id_cidades"
     }
 }

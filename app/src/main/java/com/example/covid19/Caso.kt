@@ -30,10 +30,10 @@ data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obi
             val infetados = cursor.getInt(colInfetados)
             val ativos = cursor.getInt(colAtivos)
             val obitos = cursor.getInt(colObitos)
-            val data_vacina = Date(cursor.getLong(colData))
+            val data = Date(cursor.getLong(colData))
             val id_cidades = cursor.getLong(colIdCidade)
 
-            return Caso(id, infetados, ativos, obitos, data_vacina, id_cidades)
+            return Caso(id, infetados, ativos, obitos, data, id_cidades)
         }
     }
 }
