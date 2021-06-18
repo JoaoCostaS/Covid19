@@ -2,10 +2,11 @@ package com.example.covid19
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 
-class ContentProviderCasos : ContentProvider() {
+class ContentProviderCovid : ContentProvider() {
     private var bdCovidOpenHelper : BdCovidOpenHelper? = null
 
     override fun onCreate(): Boolean {
@@ -168,5 +169,25 @@ class ContentProviderCasos : ContentProvider() {
      */
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
         TODO("Not yet implemented")
+    }
+    companion object{
+        private const val AUTHORITY = "com.example.covid19"
+
+        private const val Cidades = "cidades"
+        private const val Casos = "casos"
+        private const val Vacinas = "vacinas"
+
+        private fun getUriMacther() : UriMatcher{
+            val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+            uriMatcher.addURI(AUTHORITY, Cidades, 100)
+            uriMatcher.addURI(AUTHORITY, "$Cidades/#", 101)
+            uriMatcher.addURI(AUTHORITY, Casos, 200)
+            uriMatcher.addURI(AUTHORITY, "$Casos/#", 201)
+            uriMatcher.addURI(AUTHORITY, Vacinas, 300)
+            uriMatcher.addURI(AUTHORITY, "$Vacinas/#", 301)
+
+            return uriMatcher
+        }
     }
 }
