@@ -6,36 +6,12 @@ import android.database.Cursor
 import android.net.Uri
 
 class ContentProviderCasos : ContentProvider() {
+    private var bdCovidOpenHelper : BdCovidOpenHelper? = null
 
-    /**
-     * Implement this to initialize your content provider on startup.
-     * This method is called for all registered content providers on the
-     * application main thread at application launch time.  It must not perform
-     * lengthy operations, or application startup will be delayed.
-     *
-     *
-     * You should defer nontrivial initialization (such as opening,
-     * upgrading, and scanning databases) until the content provider is used
-     * (via [.query], [.insert], etc).  Deferred initialization
-     * keeps application startup fast, avoids unnecessary work if the provider
-     * turns out not to be needed, and stops database errors (such as a full
-     * disk) from halting application launch.
-     *
-     *
-     * If you use SQLite, [android.database.sqlite.SQLiteOpenHelper]
-     * is a helpful utility class that makes it easy to manage databases,
-     * and will automatically defer opening until first use.  If you do use
-     * SQLiteOpenHelper, make sure to avoid calling
-     * [android.database.sqlite.SQLiteOpenHelper.getReadableDatabase] or
-     * [android.database.sqlite.SQLiteOpenHelper.getWritableDatabase]
-     * from this method.  (Instead, override
-     * [android.database.sqlite.SQLiteOpenHelper.onOpen] to initialize the
-     * database when it is first opened.)
-     *
-     * @return true if the provider was successfully loaded, false otherwise
-     */
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        bdCovidOpenHelper = BdCovidOpenHelper(context)
+
+        return true
     }
 
     /**
