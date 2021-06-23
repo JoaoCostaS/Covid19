@@ -106,7 +106,7 @@ class ContentProviderCovid : ContentProvider() {
      * @return a MIME type string, or `null` if there is no type.
      */
     override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+        }
     }
 
     /**
@@ -177,15 +177,22 @@ class ContentProviderCovid : ContentProvider() {
         private const val Casos = "casos"
         private const val Vacinas = "vacinas"
 
+        private const val URI_CIDADES = 100
+        private const val URI_CIDADE_ESPECIFICA = 101
+        private const val URI_CASOS = 200
+        private const val URI_CASOS_ESPECIFICOS = 201
+        private const val URI_VACINAS = 300
+        private const val URI_VACINAS_ESPECIFICAS = 101
+
         private fun getUriMacther() : UriMatcher{
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
-            uriMatcher.addURI(AUTHORITY, Cidades, 100)
-            uriMatcher.addURI(AUTHORITY, "$Cidades/#", 101)
-            uriMatcher.addURI(AUTHORITY, Casos, 200)
-            uriMatcher.addURI(AUTHORITY, "$Casos/#", 201)
-            uriMatcher.addURI(AUTHORITY, Vacinas, 300)
-            uriMatcher.addURI(AUTHORITY, "$Vacinas/#", 301)
+            uriMatcher.addURI(AUTHORITY, Cidades, URI_CIDADES)
+            uriMatcher.addURI(AUTHORITY, "$Cidades/#", URI_CIDADE_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, Casos, URI_CIDADE_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, "$Casos/#", URI_CIDADE_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, Vacinas, URI_CIDADE_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, "$Vacinas/#", URI_CIDADE_ESPECIFICA)
 
             return uriMatcher
         }
