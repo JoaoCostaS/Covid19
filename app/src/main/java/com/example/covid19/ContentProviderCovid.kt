@@ -192,12 +192,12 @@ class ContentProviderCovid : ContentProvider() {
 
             URI_CASOS -> TabelaCasos(bd).insert(values!!)
 
-            URI_VACINAS -> TabelaVacinacao(bd).update(values!!)
+            URI_VACINAS -> TabelaVacinacao(bd).insert(values!!)
 
             else -> -1
         }
         if(id == -1L) return null
-        
+
         return Uri.withAppendedPath(uri, id.toString())
     }
 
