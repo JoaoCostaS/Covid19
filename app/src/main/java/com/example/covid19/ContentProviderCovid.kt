@@ -184,7 +184,21 @@ class ContentProviderCovid : ContentProvider() {
      * @return The URI for the newly inserted item.
      */
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+        val bd = bdCovidOpenHelper!!.writableDatabase
+
+        val id = when (getUriMacther().match(uri)){
+
+            URI_CIDADES -> TabelaCidades(bd).insert(values!!)
+
+            URI_CASOS -> TabelaCasos(bd).insert(values!!)
+
+            URI_VACINAS -> TabelaVacinacao(bd).update(values!!)
+
+            else -> -1
+        }
+        if(id == -1L) return null
+        
+        return Uri.withAppendedPath(uri, id.toString())
     }
 
     /**
