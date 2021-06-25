@@ -9,7 +9,7 @@ class TabelaFocoContagio(db: SQLiteDatabase) {
     private val db: SQLiteDatabase = db
 
     fun cria() {
-        db.execSQL(" CREATE TABLE" + NOME_TABELA + "(" +
+        db.execSQL(" CREATE TABLE " + NOME_TABELA + "(" +
                 BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CAMPO_LOCAL + " TEXT, " +
                 CAMPO_ID_CIDADES + " LONG NOT NULL, " +
@@ -41,7 +41,7 @@ class TabelaFocoContagio(db: SQLiteDatabase) {
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
     companion object{
-        const val NOME_TABELA = "vacinacao"
+        const val NOME_TABELA = "focoContagio"
         const val CAMPO_LOCAL = "local"
         const val CAMPO_ID_CIDADES = "id_cidades"
 

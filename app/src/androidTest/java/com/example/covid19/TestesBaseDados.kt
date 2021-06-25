@@ -39,6 +39,12 @@ class TestesBaseDados {
 
         return id
     }
+    private fun insereFocoContagio(tabela: TabelaFocoContagio, focoContagio: FocoContagio): Long {
+        val id = tabela.insert(focoContagio.toContentValues())
+        assertNotEquals(-1, id)
+
+        return id
+    }
     private fun getCidadeBaseDados(tabela: TabelaCidades,id: Long): Cidade {
         val cursor = tabela.query(
                 TabelaCidades.TODAS_COLUNAS,
@@ -77,6 +83,19 @@ class TestesBaseDados {
         assert(cursor!!.moveToNext())
 
         return Vacina.fromCursor(cursor)
+    }
+    private fun getFocoContagioBaseDados(tabela: TabelaFocoContagio,id: Long): FocoContagio {
+        val cursor = tabela.query(
+                TabelaFocoContagio.TODAS_COLUNAS,
+                "${BaseColumns._ID}=?",
+                arrayOf(id.toString()),
+                null, null, null
+        )
+
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return FocoContagio.fromCursor(cursor)
     }
     private fun Data(ano: Int, mes: Int, dia: Int) = Date(ano -1900, mes -1, dia)
 
@@ -325,6 +344,73 @@ class TestesBaseDados {
         vacina.id = insereVacina(tabelaVacinacao, vacina)
 
         assertEquals(vacina, getVacinaBaseDados(tabelaVacinacao, vacina.id))
+
+        db.close()
+    }
+    @Test
+    fun consegueInserirFocoContagio() {
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+        val cidade = Cidade(nome = "Oeiras")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaFocoContagio = TabelaFocoContagio(db)
+        val focoContagio = FocoContagio(local = "Escola Profissional", id_cidades = cidade.id)
+        focoContagio.id = insereFocoContagio(tabelaFocoContagio, focoContagio)
+
+        assertEquals(focoContagio, getFocoContagioBaseDados(tabelaFocoContagio, focoContagio.id))
+
+        db.close()
+    }
+    @Test
+    fun consegueFocoContagioVacinas() {
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+        val cidadeVendadoPinheiro = Cidade(nome = "Venda do Pinheiro")
+        cidadeVendadoPinheiro.id = insereCidade(tabelaCidades, cidadeVendadoPinheiro)
+
+        val cidadeMafra = Cidade(nome = "Mafra")
+        cidadeMafra.id = insereCidade(tabelaCidades, cidadeMafra)
+
+        val tabelaFocoContagio = TabelaFocoContagio(db)
+        val focoContagio = FocoContagio(local = "BB", id_cidades = cidadeVendadoPinheiro.id)
+        focoContagio.id = insereFocoContagio(tabelaFocoContagio, focoContagio)
+
+
+        focoContagio.local = "MediaPro"
+        focoContagio.id_cidades = cidadeMafra.id
+
+        val registosAlterados = tabelaFocoContagio.update(
+                focoContagio.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf(focoContagio.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+        assertEquals(focoContagio, getFocoContagioBaseDados(tabelaFocoContagio, focoContagio.id))
+
+        db.close()
+    }
+    @Test
+    fun consegueEliminarFocoContagio(){
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+        val cidade = Cidade(nome = "Tituaria")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaFocoContagio = TabelaFocoContagio(db)
+        val focoContagio = FocoContagio(local = "Restaurante Wilson" , id_cidades = cidade.id)
+        focoContagio.id = insereFocoContagio(tabelaFocoContagio, focoContagio)
+
+        val registosEliminados = tabelaFocoContagio.delete(
+                "${BaseColumns._ID}=?",
+                arrayOf(focoContagio.id.toString())
+        )
+        assertEquals(1, registosEliminados)
+
 
         db.close()
     }
