@@ -136,6 +136,22 @@ class ContentProviderCovid : ContentProvider() {
                     null,
                     null
             )
+            URI_FOCO_CONTAGIO -> TabelaFocoContagio(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    sortOrder
+            )
+            URI_FOCO_CONTAGIO_ESPECIFICOS -> TabelaFocoContagio(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>?,
+                    null,
+                    null,
+                    null
+            )
             else -> null
         }
     }
@@ -167,6 +183,8 @@ class ContentProviderCovid : ContentProvider() {
             URI_CASOS_ESPECIFICOS -> "$UNICO_ITEM/$Casos"
             URI_VACINAS -> "$MULTIPLOS_ITEMS/$Vacinas"
             URI_VACINAS_ESPECIFICAS -> "$UNICO_ITEM/$Vacinas"
+            URI_FOCO_CONTAGIO -> "$MULTIPLOS_ITEMS/$FocoContagio"
+            URI_FOCO_CONTAGIO_ESPECIFICOS -> "$UNICO_ITEM/$FocoContagio"
             else -> null
         }
     }
@@ -193,6 +211,8 @@ class ContentProviderCovid : ContentProvider() {
             URI_CASOS -> TabelaCasos(bd).insert(values!!)
 
             URI_VACINAS -> TabelaVacinacao(bd).insert(values!!)
+
+            URI_FOCO_CONTAGIO -> TabelaFocoContagio(bd).insert(values!!)
 
             else -> -1
         }
@@ -246,6 +266,10 @@ class ContentProviderCovid : ContentProvider() {
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!),
             )
+            URI_FOCO_CONTAGIO_ESPECIFICOS -> TabelaFocoContagio(bd).delete(
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+            )
             else -> 0
         }
     }
@@ -289,6 +313,11 @@ class ContentProviderCovid : ContentProvider() {
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!),
             )
+            URI_FOCO_CONTAGIO_ESPECIFICOS -> TabelaFocoContagio(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+            )
             else -> 0
         }
     }
@@ -298,13 +327,16 @@ class ContentProviderCovid : ContentProvider() {
         private const val Cidades = "cidades"
         private const val Casos = "casos"
         private const val Vacinas = "vacinas"
+        private const val FocoContagio = "focoContagio"
 
         private const val URI_CIDADES = 100
         private const val URI_CIDADE_ESPECIFICA = 101
         private const val URI_CASOS = 200
         private const val URI_CASOS_ESPECIFICOS = 201
         private const val URI_VACINAS = 300
-        private const val URI_VACINAS_ESPECIFICAS = 101
+        private const val URI_VACINAS_ESPECIFICAS = 301
+        private const val URI_FOCO_CONTAGIO = 400
+        private const val URI_FOCO_CONTAGIO_ESPECIFICOS = 401
 
         private const val MULTIPLOS_ITEMS = "vnd.android.cursor.dir"
         private const val UNICO_ITEM = "vnd.android.cursor.item"
@@ -314,10 +346,12 @@ class ContentProviderCovid : ContentProvider() {
 
             uriMatcher.addURI(AUTHORITY, Cidades, URI_CIDADES)
             uriMatcher.addURI(AUTHORITY, "$Cidades/#", URI_CIDADE_ESPECIFICA)
-            uriMatcher.addURI(AUTHORITY, Casos, URI_CIDADE_ESPECIFICA)
-            uriMatcher.addURI(AUTHORITY, "$Casos/#", URI_CIDADE_ESPECIFICA)
-            uriMatcher.addURI(AUTHORITY, Vacinas, URI_CIDADE_ESPECIFICA)
-            uriMatcher.addURI(AUTHORITY, "$Vacinas/#", URI_CIDADE_ESPECIFICA)
+            uriMatcher.addURI(AUTHORITY, Casos, URI_CASOS)
+            uriMatcher.addURI(AUTHORITY, "$Casos/#", URI_CASOS_ESPECIFICOS)
+            uriMatcher.addURI(AUTHORITY, Vacinas, URI_VACINAS)
+            uriMatcher.addURI(AUTHORITY, "$Vacinas/#", URI_VACINAS_ESPECIFICAS)
+            uriMatcher.addURI(AUTHORITY, FocoContagio, URI_FOCO_CONTAGIO)
+            uriMatcher.addURI(AUTHORITY, "$FocoContagio/#", URI_FOCO_CONTAGIO_ESPECIFICOS)
 
             return uriMatcher
         }

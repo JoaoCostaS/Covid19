@@ -414,5 +414,21 @@ class TestesBaseDados {
 
         db.close()
     }
+    @Test
+    fun consegueLerFocoContagio(){
+        val db = getBdCovidOpenHelper().writableDatabase
+
+        val tabelaCidades = TabelaCidades(db)
+        val cidade = Cidade(nome = "Santarém")
+        cidade.id = insereCidade(tabelaCidades, cidade)
+
+        val tabelaFocoContagio = TabelaFocoContagio(db)
+        val focoContagio = FocoContagio(local = "Praça", id_cidades = cidade.id)
+        focoContagio.id = insereFocoContagio(tabelaFocoContagio, focoContagio)
+
+        assertEquals(focoContagio, getFocoContagioBaseDados(tabelaFocoContagio, focoContagio.id))
+
+        db.close()
+    }
 }
 
