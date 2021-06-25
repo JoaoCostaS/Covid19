@@ -11,6 +11,7 @@ class BdCovidOpenHelper(context: Context?, )
             TabelaCidades(db).cria()
             TabelaCasos(db).cria()
             TabelaVacinacao(db).cria()
+            TabelaFocoContagio(db).cria()
         }
     }
 
