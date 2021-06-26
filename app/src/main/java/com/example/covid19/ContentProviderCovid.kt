@@ -344,6 +344,7 @@ class ContentProviderCovid : ContentProvider() {
         private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY/")
         public val ENDERECO_CIDADES = Uri.withAppendedPath(ENDERECO_BASE, Cidades)
         public val ENDERECO_CASOS = Uri.withAppendedPath(ENDERECO_BASE, Casos)
+        public val ENDERECO_FOCO_CONTAGIO = Uri.withAppendedPath(ENDERECO_BASE, FocoContagio)
 
         private fun getUriMacther() : UriMatcher{
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)

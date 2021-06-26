@@ -6,30 +6,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FragmentListaCidades : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+class FragmentListaFocoContagio : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.lista_cidades_fragment, container, false)
+        return inflater.inflate(R.layout.lista_foco_contagio_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         LoaderManager.getInstance(this)
-                .initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
+                .initLoader(ID_LOADER_MANAGER_FOCO_CONTAGIO, null, this)
 
        /* view.findViewById<Button>(R.id.button_first).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
@@ -49,7 +47,7 @@ class FragmentListaCidades : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
                 requireContext(),
-                ContentProviderCovid.ENDERECO_CIDADES,
+                ContentProviderCovid.ENDERECO_FOCO_CONTAGIO,
                 TabelaCidades.TODAS_COLUNAS,
                 null, null,
                 TabelaCidades.CAMPO_NOME
@@ -117,6 +115,6 @@ class FragmentListaCidades : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         TODO("Not yet implemented")
     }
     companion object{
-        const val ID_LOADER_MANAGER_CIDADES = 0
+        const val ID_LOADER_MANAGER_FOCO_CONTAGIO = 0
     }
 }

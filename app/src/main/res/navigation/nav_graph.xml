@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.covid19.FragmentListaCidades"
+        android:name="com.example.covid19.FragmentListaFocoContagio"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/lista_cidades_fragment">
+        tools:layout="@layout/lista_foco_contagio_fragment">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
