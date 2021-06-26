@@ -9,4 +9,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="cidades">Cidades</string>
+    <string name="casos">Casos</string>
+    <string name="foco_de_contagio">Foco de Contagio</string>
+    <string name="todo">TODO</string>
+    <string name="cidade">Cidade</string>
 </resources>
