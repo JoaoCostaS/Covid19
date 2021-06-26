@@ -119,7 +119,7 @@ class ContentProviderCovid : ContentProvider() {
                     null,
                     null,
                     null
-            )
+            )/*
             URI_VACINAS -> TabelaVacinacao(bd).query(
                     projection as Array<String>,
                     "${BaseColumns._ID}=?",
@@ -135,7 +135,7 @@ class ContentProviderCovid : ContentProvider() {
                     null,
                     null,
                     null
-            )
+            )*/
             URI_FOCO_CONTAGIO -> TabelaFocoContagio(bd).query(
                     projection as Array<String>,
                     "${BaseColumns._ID}=?",
@@ -181,8 +181,8 @@ class ContentProviderCovid : ContentProvider() {
             URI_CIDADE_ESPECIFICA -> "$UNICO_ITEM/$Cidades"
             URI_CASOS -> "$MULTIPLOS_ITEMS/$Casos"
             URI_CASOS_ESPECIFICOS -> "$UNICO_ITEM/$Casos"
-            URI_VACINAS -> "$MULTIPLOS_ITEMS/$Vacinas"
-            URI_VACINAS_ESPECIFICAS -> "$UNICO_ITEM/$Vacinas"
+           // URI_VACINAS -> "$MULTIPLOS_ITEMS/$Vacinas"
+            //URI_VACINAS_ESPECIFICAS -> "$UNICO_ITEM/$Vacinas"
             URI_FOCO_CONTAGIO -> "$MULTIPLOS_ITEMS/$FocoContagio"
             URI_FOCO_CONTAGIO_ESPECIFICOS -> "$UNICO_ITEM/$FocoContagio"
             else -> null
@@ -210,7 +210,7 @@ class ContentProviderCovid : ContentProvider() {
 
             URI_CASOS -> TabelaCasos(bd).insert(values!!)
 
-            URI_VACINAS -> TabelaVacinacao(bd).insert(values!!)
+            //URI_VACINAS -> TabelaVacinacao(bd).insert(values!!)
 
             URI_FOCO_CONTAGIO -> TabelaFocoContagio(bd).insert(values!!)
 
@@ -261,11 +261,11 @@ class ContentProviderCovid : ContentProvider() {
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!),
             )
-
+/*
             URI_VACINAS_ESPECIFICAS -> TabelaVacinacao(bd).delete(
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!),
-            )
+            )*/
             URI_FOCO_CONTAGIO_ESPECIFICOS -> TabelaFocoContagio(bd).delete(
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!),
@@ -307,12 +307,12 @@ class ContentProviderCovid : ContentProvider() {
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!),
             )
-
+/*
             URI_VACINAS_ESPECIFICAS -> TabelaVacinacao(bd).update(
                     values!!,
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!),
-            )
+            )*/
             URI_FOCO_CONTAGIO_ESPECIFICOS -> TabelaFocoContagio(bd).update(
                     values!!,
                     "${BaseColumns._ID}=?",
@@ -326,20 +326,24 @@ class ContentProviderCovid : ContentProvider() {
 
         private const val Cidades = "cidades"
         private const val Casos = "casos"
-        private const val Vacinas = "vacinas"
+        //private const val Vacinas = "vacinas"
         private const val FocoContagio = "focoContagio"
 
         private const val URI_CIDADES = 100
         private const val URI_CIDADE_ESPECIFICA = 101
         private const val URI_CASOS = 200
         private const val URI_CASOS_ESPECIFICOS = 201
-        private const val URI_VACINAS = 300
-        private const val URI_VACINAS_ESPECIFICAS = 301
+        //private const val URI_VACINAS = 300
+        //private const val URI_VACINAS_ESPECIFICAS = 301
         private const val URI_FOCO_CONTAGIO = 400
         private const val URI_FOCO_CONTAGIO_ESPECIFICOS = 401
 
         private const val MULTIPLOS_ITEMS = "vnd.android.cursor.dir"
         private const val UNICO_ITEM = "vnd.android.cursor.item"
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY/")
+        public val ENDERECO_CIDADES = Uri.withAppendedPath(ENDERECO_BASE, Cidades)
+        public val ENDERECO_CASOS = Uri.withAppendedPath(ENDERECO_BASE, Casos)
 
         private fun getUriMacther() : UriMatcher{
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
@@ -348,8 +352,8 @@ class ContentProviderCovid : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, "$Cidades/#", URI_CIDADE_ESPECIFICA)
             uriMatcher.addURI(AUTHORITY, Casos, URI_CASOS)
             uriMatcher.addURI(AUTHORITY, "$Casos/#", URI_CASOS_ESPECIFICOS)
-            uriMatcher.addURI(AUTHORITY, Vacinas, URI_VACINAS)
-            uriMatcher.addURI(AUTHORITY, "$Vacinas/#", URI_VACINAS_ESPECIFICAS)
+            //uriMatcher.addURI(AUTHORITY, Vacinas, URI_VACINAS)
+            //uriMatcher.addURI(AUTHORITY, "$Vacinas/#", URI_VACINAS_ESPECIFICAS)
             uriMatcher.addURI(AUTHORITY, FocoContagio, URI_FOCO_CONTAGIO)
             uriMatcher.addURI(AUTHORITY, "$FocoContagio/#", URI_FOCO_CONTAGIO_ESPECIFICOS)
 
