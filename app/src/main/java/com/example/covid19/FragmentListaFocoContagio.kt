@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -25,6 +26,9 @@ class FragmentListaFocoContagio : Fragment(), LoaderManager.LoaderCallbacks<Curs
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recyclerViewFocoContagio = view.findViewById<RecyclerView>(R.id.recyclerViewFocoContagio)
+        //recyclerViewFocoContagio.adapter
 
         LoaderManager.getInstance(this)
                 .initLoader(ID_LOADER_MANAGER_FOCO_CONTAGIO, null, this)
@@ -48,9 +52,9 @@ class FragmentListaFocoContagio : Fragment(), LoaderManager.LoaderCallbacks<Curs
         return CursorLoader(
                 requireContext(),
                 ContentProviderCovid.ENDERECO_FOCO_CONTAGIO,
-                TabelaCidades.TODAS_COLUNAS,
+                TabelaFocoContagio.TODAS_COLUNAS,
                 null, null,
-                TabelaCidades.CAMPO_NOME
+                TabelaFocoContagio.CAMPO_ID_CIDADES
         )
     }
 
