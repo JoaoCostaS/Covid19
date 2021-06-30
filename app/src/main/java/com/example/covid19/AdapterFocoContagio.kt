@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterFocoContagio(var cursor: Cursor? = null): RecyclerView.Adapter<AdapterFocoContagio.ViewHolderFocoContagio>() {
+class AdapterFocoContagio(val fragment: FragmentListaFocoContagio, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterFocoContagio.ViewHolderFocoContagio>() {
     class ViewHolderFocoContagio(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
@@ -34,7 +34,9 @@ class AdapterFocoContagio(var cursor: Cursor? = null): RecyclerView.Adapter<Adap
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderFocoContagio {
-        TODO("Not yet implemented")
+       val itemFocoContagio = fragment.layoutInflater.inflate(R.layout.item_foco_contagio, parent, false)
+
+       return ViewHolderFocoContagio(itemFocoContagio)
     }
 
     /**
