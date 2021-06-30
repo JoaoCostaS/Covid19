@@ -14,4 +14,6 @@
     <string name="foco_de_contagio">Foco de Contagio</string>
     <string name="todo">TODO</string>
     <string name="cidade">Cidade</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

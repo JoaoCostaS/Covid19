@@ -260,7 +260,7 @@ class TestesBaseDados {
         assertEquals(caso, getCasoBaseDados(tabelaCasos, caso.id))
 
         db.close()
-    }
+    }/*
     @Test
     fun consegueInserirVacinas() {
         val db = getBdCovidOpenHelper().writableDatabase
@@ -346,7 +346,7 @@ class TestesBaseDados {
         assertEquals(vacina, getVacinaBaseDados(tabelaVacinacao, vacina.id))
 
         db.close()
-    }
+    }*/
     @Test
     fun consegueInserirFocoContagio() {
         val db = getBdCovidOpenHelper().writableDatabase
@@ -364,7 +364,7 @@ class TestesBaseDados {
         db.close()
     }
     @Test
-    fun consegueFocoContagioVacinas() {
+    fun consegueAlterarFocoContagio() {
         val db = getBdCovidOpenHelper().writableDatabase
 
         val tabelaCidades = TabelaCidades(db)

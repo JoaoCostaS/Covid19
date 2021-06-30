@@ -38,6 +38,7 @@ class TabelaFocoContagio(db: SQLiteDatabase) {
             having: String?,
             orderBy: String?
     ): Cursor? {
+
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
     companion object{
