@@ -36,7 +36,7 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewCidades = view.findViewById<RecyclerView>(R.id.RecyclerViewCidades)
-        adapterCidades = AdapterCidades()
+        adapterCidades = AdapterCidades(this)
         recyclerViewCidades.adapter
         recyclerViewCidades.layoutManager = LinearLayoutManager(requireContext())
 
@@ -126,7 +126,7 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterCidades!!.cursor = null 
+        adapterCidades!!.cursor = null
     }
 
     companion object{

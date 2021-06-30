@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterCidades (var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCidades.ViewHolderCidade>() {
+class AdapterCidades (val fragment: ListaCidadesFragment, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCidades.ViewHolderCidade>() {
     class ViewHolderCidade(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
@@ -34,7 +34,9 @@ class AdapterCidades (var cursor: Cursor? = null): RecyclerView.Adapter<AdapterC
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCidade {
-        TODO("Not yet implemented")
+        val itemCidade = fragment.layoutInflater.inflate(R.layout.item_cidade, parent, false)
+
+        return ViewHolderCidade(itemCidade)
     }
 
     /**
