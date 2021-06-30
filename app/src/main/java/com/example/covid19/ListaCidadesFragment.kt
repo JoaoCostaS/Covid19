@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 
 // TODO: Rename parameter arguments, choose names that match
@@ -59,7 +60,13 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
      * @return Return a new Loader instance that is ready to start loading.
      */
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        TODO("Not yet implemented")
+        return CursorLoader(
+            requireContext(),
+            ContentProviderCovid.ENDERECO_CIDADES,
+            TabelaCidades.TODAS_COLUNAS,
+            null, null,
+            TabelaCidades.CAMPO_NOME
+        )
     }
 
     /**
