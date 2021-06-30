@@ -9,19 +9,12 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ListaCidadesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
-    // TODO: Rename and change types of parameters
+    private var adapterCidades : AdapterCidades? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +36,9 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewCidades = view.findViewById<RecyclerView>(R.id.RecyclerViewCidades)
-        //recyclerViewCidades.adapter
+        adapterCidades = AdapterCidades()
+        recyclerViewCidades.adapter
+        recyclerViewCidades.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this).
         initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
