@@ -3,10 +3,16 @@ package com.example.covid19
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterCidades (val fragment: ListaCidadesFragment, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCidades.ViewHolderCidade>() {
     class ViewHolderCidade(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewCidade)
+
+        fun atualizaCidade(cidade: Cidade) {
+            textViewNome.text = cidade.nome
+        }
 
     }
 
@@ -61,7 +67,8 @@ class AdapterCidades (val fragment: ListaCidadesFragment, var cursor: Cursor? = 
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderCidade, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.atualizaCidade(Cidade.fromCursor(cursor!!))
     }
 
     /**
