@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
+    //private var _binding: ListaCidadesFragmentBinding? = null
     private var adapterCidades : AdapterCidades? = null
 
 
@@ -28,7 +29,10 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //_binding= ListaCidadesFragmentBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
+        //return binding.root
         return inflater.inflate(R.layout.fragment_lista_cidades, container, false)
     }
 
@@ -37,7 +41,7 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
 
         val recyclerViewCidades = view.findViewById<RecyclerView>(R.id.RecyclerViewCidades)
         adapterCidades = AdapterCidades(this)
-        recyclerViewCidades.adapter
+        recyclerViewCidades.adapter = adapterCidades
         recyclerViewCidades.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this).

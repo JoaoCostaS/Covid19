@@ -89,16 +89,16 @@ class ContentProviderCovid : ContentProvider() {
         return when (getUriMacther().match(uri)){
             URI_CIDADES -> TabelaCidades(bd).query(
                     projection as Array<String>,
-                    "${BaseColumns._ID}=?",
-                    arrayOf(uri.lastPathSegment!!),
+                    selection,
+                    selectionArgs as Array<String>?,
                     null,
                     null,
                     sortOrder
             )
             URI_CIDADE_ESPECIFICA -> TabelaCidades(bd).query(
                     projection as Array<String>,
-                    selection,
-                    selectionArgs as Array<String>?,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
                     null,
                     null,
                     null
