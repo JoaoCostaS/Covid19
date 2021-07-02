@@ -6,7 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterCidades (val fragment: ListaCidadesFragment, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCidades.ViewHolderCidade>() {
+class AdapterCidades (val fragment: ListaCidadesFragment): RecyclerView.Adapter<AdapterCidades.ViewHolderCidade>() {
+    public var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     class ViewHolderCidade(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewNome = itemView.findViewById<TextView>(R.id.textViewCidade)
 
