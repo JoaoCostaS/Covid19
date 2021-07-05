@@ -9,12 +9,13 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
-    //private var _binding: ListaCidadesFragmentBinding? = null
+   // private var _binding: ListaCidadesFragmentBinding? = null
     private var adapterCidades : AdapterCidades? = null
 
 
@@ -32,7 +33,7 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
 
         //_binding= ListaCidadesFragmentBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        //return binding.root
+       // return binding.root
         return inflater.inflate(R.layout.fragment_lista_cidades, container, false)
     }
 
@@ -46,7 +47,13 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
 
         LoaderManager.getInstance(this).
         initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
+
+       // _binding.button_Cidade.setOnClickListener{
+         //   findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+       // }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
