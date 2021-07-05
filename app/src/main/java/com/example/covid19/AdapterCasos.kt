@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterCasos (var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCasos.ViewHolderCaso>()  {
+class AdapterCasos (val fragment: Fragment_lista_casos, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCasos.ViewHolderCaso>()  {
 
     class ViewHolderCaso(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -35,7 +35,9 @@ class AdapterCasos (var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCas
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCaso {
-        TODO("Not yet implemented")
+        val itemCaso = fragment.layoutInflater.inflate(R.layout.item_caso, parent, false)
+
+        return ViewHolderCaso(itemCaso)
     }
 
     /**

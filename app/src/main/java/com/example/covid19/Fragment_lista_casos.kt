@@ -36,7 +36,7 @@ class Fragment_lista_casos : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> 
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewCasos = view.findViewById<RecyclerView>(R.id.RecyclerViewCasos)
-        adapterCasos = AdapterCasos()
+        adapterCasos = AdapterCasos(this)
         recyclerViewCasos.adapter = adapterCasos
         recyclerViewCasos.layoutManager = LinearLayoutManager(requireContext())
 
