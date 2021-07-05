@@ -1,10 +1,11 @@
 package com.example.covid19
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterFocoContagio : RecyclerView.Adapter<AdapterFocoContagio.ViewHolderFocoContagio>() {
+class AdapterFocoContagio (var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterFocoContagio.ViewHolderFocoContagio>() {
     class ViewHolderFocoContagio(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
