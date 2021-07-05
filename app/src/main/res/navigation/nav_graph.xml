@@ -24,5 +24,17 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/ListaCidadesFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_fragment_lista_casos"
+            app:destination="@id/fragment_lista_casos" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_lista_casos"
+        android:name="com.example.covid19.Fragment_lista_casos"
+        android:label="fragment_lista_casos"
+        tools:layout="@layout/fragment_lista_casos" >
+        <action
+            android:id="@+id/action_fragment_lista_casos_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 </navigation>
