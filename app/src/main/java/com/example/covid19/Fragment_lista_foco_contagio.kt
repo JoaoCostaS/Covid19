@@ -38,7 +38,7 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewFocoContagio = view.findViewById<RecyclerView>(R.id.RecyclerViewFocoContagio)
-        adapterFocoContagio = AdapterFocoContagio()
+        adapterFocoContagio = AdapterFocoContagio(this)
         recyclerViewFocoContagio.adapter = adapterFocoContagio
         recyclerViewFocoContagio.layoutManager = LinearLayoutManager(requireContext())
 
