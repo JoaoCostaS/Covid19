@@ -138,16 +138,16 @@ class ContentProviderCovid : ContentProvider() {
             )*/
             URI_FOCO_CONTAGIO -> TabelaFocoContagio(bd).query(
                     projection as Array<String>,
-                    "${BaseColumns._ID}=?",
-                    arrayOf(uri.lastPathSegment!!),
+                    selection,
+                    selectionArgs as Array<String>?,
                     null,
                     null,
                     sortOrder
             )
             URI_FOCO_CONTAGIO_ESPECIFICOS -> TabelaFocoContagio(bd).query(
                     projection as Array<String>,
-                    selection,
-                    selectionArgs as Array<String>?,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
                     null,
                     null,
                     null

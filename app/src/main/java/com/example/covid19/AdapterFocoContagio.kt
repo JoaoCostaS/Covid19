@@ -6,7 +6,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio, var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterFocoContagio.ViewHolderFocoContagio>() {
+class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio) : RecyclerView.Adapter<AdapterFocoContagio.ViewHolderFocoContagio>() {
+    public var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+
+
     class ViewHolderFocoContagio(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewIdCidade = itemView.findViewById<TextView>(R.id.textViewCidade)
         private val textViewLocal = itemView.findViewById<TextView>(R.id.textViewLocal)

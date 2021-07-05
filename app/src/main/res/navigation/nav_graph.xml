@@ -44,7 +44,8 @@
         android:id="@+id/fragment_lista_foco_contagio"
         android:name="com.example.covid19.Fragment_lista_foco_contagio"
         android:label="fragment_lista_foco_contagio"
-        tools:layout="@layout/fragment_lista_foco_contagio" >
+        tools:layout="@layout/fragment_lista_foco_contagio"
+        app:startDestination="@id/action_fragment_lista_foco_contagio_to_menuFragment">
         <action
             android:id="@+id/action_fragment_lista_foco_contagio_to_menuFragment"
             app:destination="@id/menuFragment" />
