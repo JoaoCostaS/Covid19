@@ -9,10 +9,14 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 class Fragment_lista_casos : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
+    private var adapterCasos : AdapterCasos? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,9 @@ class Fragment_lista_casos : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> 
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerViewCasos = view.findViewById<RecyclerView>(R.id.RecyclerViewCasos)
+        adapterCasos = AdapterCasos()
+        recyclerViewCasos.adapter = adapterCasos
+        recyclerViewCasos.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_CASOS, null, this)
