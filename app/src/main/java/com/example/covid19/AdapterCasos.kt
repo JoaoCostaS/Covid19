@@ -3,11 +3,25 @@ package com.example.covid19
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterCasos (val fragment: Fragment_lista_casos, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCasos.ViewHolderCaso>()  {
 
     class ViewHolderCaso(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val textViewId = itemView.findViewById<TextView>(R.id.textViewId)
+        private val textViewInfetados = itemView.findViewById<TextView>(R.id.textViewInfetados)
+        private val textViewAtivos = itemView.findViewById<TextView>(R.id.textViewAtivos)
+        private val textViewObitos = itemView.findViewById<TextView>(R.id.textViewObitos)
+        private val textViewData = itemView.findViewById<TextView>(R.id.textViewData)
+
+        fun atualizaCaso(caso: Caso) {
+            textViewId.text = caso.id_cidades.toString()
+            textViewInfetados.text = caso.infetados.toString()
+            textViewAtivos.text = caso.ativos.toString()
+            textViewObitos.text = caso.obitos.toString()
+            //textViewData.text = caso.data.
+        }
 
     }
 
@@ -62,7 +76,8 @@ class AdapterCasos (val fragment: Fragment_lista_casos, var cursor: Cursor? = nu
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderCaso, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.atualizaCaso(Caso.fromCursor(cursor!!))
     }
 
     /**

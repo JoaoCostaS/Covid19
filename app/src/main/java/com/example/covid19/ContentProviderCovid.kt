@@ -106,16 +106,16 @@ class ContentProviderCovid : ContentProvider() {
 
             URI_CASOS -> TabelaCasos(bd).query(
                     projection as Array<String>,
-                    "${BaseColumns._ID}=?",
-                    arrayOf(uri.lastPathSegment!!),
+                    selection,
+                    selectionArgs as Array<String>?,
                     null,
                     null,
                     sortOrder
             )
             URI_CASOS_ESPECIFICOS -> TabelaCasos(bd).query(
                     projection as Array<String>,
-                    selection,
-                    selectionArgs as Array<String>?,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
                     null,
                     null,
                     null

@@ -48,9 +48,6 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
         LoaderManager.getInstance(this).
         initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
 
-       // _binding.button_Cidade.setOnClickListener{
-         //   findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-       // }
     }
 
 

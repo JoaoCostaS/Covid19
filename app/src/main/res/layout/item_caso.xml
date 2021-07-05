@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_campos"
@@ -18,7 +18,7 @@
         tools:text="Faro" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewInfetados"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_campos"
@@ -30,7 +30,7 @@
         tools:text="3415" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewAtivos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_campos"
@@ -42,7 +42,7 @@
         tools:text="60" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewObitos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_campos"
@@ -54,7 +54,7 @@
         tools:text="53" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_campos"
