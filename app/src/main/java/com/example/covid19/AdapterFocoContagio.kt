@@ -3,10 +3,18 @@ package com.example.covid19
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio, var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterFocoContagio.ViewHolderFocoContagio>() {
     class ViewHolderFocoContagio(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val textViewIdCidade = itemView.findViewById<TextView>(R.id.textViewCidade)
+        private val textViewLocal = itemView.findViewById<TextView>(R.id.textViewLocal)
+
+        fun atualizaFocoContagio(focoContagio: FocoContagio) {
+            textViewIdCidade.text = focoContagio.id_cidades.toString()
+            textViewLocal.text = focoContagio.local
+        }
     }
 
     /**
@@ -60,7 +68,8 @@ class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio, var curso
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderFocoContagio, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.atualizaFocoContagio(FocoContagio.fromCursor(cursor!!))
     }
 
     /**
