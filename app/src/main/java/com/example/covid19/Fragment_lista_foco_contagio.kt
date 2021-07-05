@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -17,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
  * create an instance of this fragment.
  */
 class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
-
+    private var adapterFocoContagio : AdapterFocoContagio? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,11 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val recyclerViewFocoContagio = view.findViewById<RecyclerView>(R.id.RecyclerViewFocoContagio)
+        adapterFocoContagio = AdapterFocoContagio()
+        recyclerViewFocoContagio.adapter = adapterFocoContagio
+        recyclerViewFocoContagio.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this)
             .initLoader(Fragment_lista_foco_contagio.ID_LOADER_MANAGER_FOCO_CONTAGIO, null, this)
