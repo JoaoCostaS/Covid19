@@ -6,7 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterCasos (val fragment: Fragment_lista_casos, var cursor: Cursor? = null): RecyclerView.Adapter<AdapterCasos.ViewHolderCaso>()  {
+class AdapterCasos (val fragment: Fragment_lista_casos): RecyclerView.Adapter<AdapterCasos.ViewHolderCaso>()  {
+    public var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     class ViewHolderCaso(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewId = itemView.findViewById<TextView>(R.id.textViewId)
