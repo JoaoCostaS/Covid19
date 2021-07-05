@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * A simple [Fragment] subclass.
@@ -34,6 +35,8 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerViewFocoContagio = view.findViewById<RecyclerView>(R.id.RecyclerViewFocoContagio)
+
         LoaderManager.getInstance(this)
             .initLoader(Fragment_lista_foco_contagio.ID_LOADER_MANAGER_FOCO_CONTAGIO, null, this)
 
