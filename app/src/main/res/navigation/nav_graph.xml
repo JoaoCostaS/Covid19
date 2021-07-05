@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment_lista_casos">
+    app:startDestination="@id/fragment_lista_foco_contagio">
 
     <fragment
         android:id="@+id/ListaCidadesFragment"
@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_menuFragment_to_fragment_lista_casos"
             app:destination="@id/fragment_lista_casos" />
+        <action
+            android:id="@+id/action_menuFragment_to_fragment_lista_foco_contagio"
+            app:destination="@id/fragment_lista_foco_contagio" />
     </fragment>
     <fragment
         android:id="@+id/fragment_lista_casos"
@@ -35,6 +38,15 @@
         tools:layout="@layout/fragment_lista_casos" >
         <action
             android:id="@+id/action_fragment_lista_casos_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_lista_foco_contagio"
+        android:name="com.example.covid19.Fragment_lista_foco_contagio"
+        android:label="fragment_lista_foco_contagio"
+        tools:layout="@layout/fragment_lista_foco_contagio" >
+        <action
+            android:id="@+id/action_fragment_lista_foco_contagio_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
 </navigation>
