@@ -18,7 +18,7 @@
         android:id="@+id/button_cidade"
         android:layout_width="201dp"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:text="@string/cidade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,13 +48,14 @@
 
     <ImageView
         android:id="@+id/covid"
-        android:layout_width="200dp"
-        android:layout_height="198dp"
+        android:layout_width="159dp"
+        android:layout_height="140dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/_115033545_gettyimages_1226314512"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_foco_contagio"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toBottomOf="@+id/button_foco_contagio" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

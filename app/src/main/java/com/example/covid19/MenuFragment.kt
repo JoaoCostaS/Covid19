@@ -24,8 +24,16 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*view.findViewById<Button>(R.id.button_cidades).setOnClickListener {
+        view.findViewById<Button>(R.id.button_cidade).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }*/
+        }
+
+        view.findViewById<Button>(R.id.button_casos).setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_fragment_lista_casos)
+        }
+
+        view.findViewById<Button>(R.id.button_foco_contagio).setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_fragment_lista_foco_contagio)
+        }
     }
 }

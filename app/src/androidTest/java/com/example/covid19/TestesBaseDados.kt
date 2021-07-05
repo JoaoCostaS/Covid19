@@ -33,12 +33,12 @@ class TestesBaseDados {
 
         return id
     }
-    private fun insereVacina(tabela: TabelaVacinacao, vacina: Vacina): Long {
+   /* private fun insereVacina(tabela: TabelaVacinacao, vacina: Vacina): Long {
         val id = tabela.insert(vacina.toContentValues())
         assertNotEquals(-1, id)
 
         return id
-    }
+    }*/
     private fun insereFocoContagio(tabela: TabelaFocoContagio, focoContagio: FocoContagio): Long {
         val id = tabela.insert(focoContagio.toContentValues())
         assertNotEquals(-1, id)
@@ -48,7 +48,7 @@ class TestesBaseDados {
     private fun getCidadeBaseDados(tabela: TabelaCidades,id: Long): Cidade {
         val cursor = tabela.query(
                 TabelaCidades.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
+                "${TabelaCidades.NOME_TABELA}.${BaseColumns._ID}=?",
                 arrayOf(id.toString()),
                 null, null, null
         )
@@ -61,7 +61,7 @@ class TestesBaseDados {
     private fun getCasoBaseDados(tabela: TabelaCasos,id: Long): Caso {
         val cursor = tabela.query(
                 TabelaCasos.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
+                "${TabelaCasos.NOME_TABELA}.${BaseColumns._ID}=?",
                 arrayOf(id.toString()),
                 null, null, null
         )
@@ -71,7 +71,7 @@ class TestesBaseDados {
 
         return Caso.fromCursor(cursor)
     }
-    private fun getVacinaBaseDados(tabela: TabelaVacinacao,id: Long): Vacina {
+   /* private fun getVacinaBaseDados(tabela: TabelaVacinacao,id: Long): Vacina {
         val cursor = tabela.query(
                 TabelaVacinacao.TODAS_COLUNAS,
                 "${BaseColumns._ID}=?",
@@ -83,11 +83,11 @@ class TestesBaseDados {
         assert(cursor!!.moveToNext())
 
         return Vacina.fromCursor(cursor)
-    }
+    }*/
     private fun getFocoContagioBaseDados(tabela: TabelaFocoContagio,id: Long): FocoContagio {
         val cursor = tabela.query(
                 TabelaFocoContagio.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
+                "${TabelaFocoContagio.NOME_TABELA}.${BaseColumns._ID}=?",
                 arrayOf(id.toString()),
                 null, null, null
         )

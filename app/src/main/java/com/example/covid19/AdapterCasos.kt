@@ -26,7 +26,7 @@ class AdapterCasos (val fragment: Fragment_lista_casos): RecyclerView.Adapter<Ad
             textViewInfetados.text = caso.infetados.toString()
             textViewAtivos.text = caso.ativos.toString()
             textViewObitos.text = caso.obitos.toString()
-            //textViewData.text = caso.data.
+            textViewData.text = caso.data.toString()
         }
 
     }
