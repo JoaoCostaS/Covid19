@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import java.util.*
 
-data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obitos: Int, var data: Date, var id_cidades: Long) {
+data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obitos: Int, var data: Date, var id_cidades: Long, var nomeCidade: String?) {
     fun toContentValues(): ContentValues {
         val valores = ContentValues().apply {
             put(TabelaCasos.CAMPO_INFETADOS, infetados.toInt())
@@ -25,6 +25,7 @@ data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obi
             val colObitos = cursor.getColumnIndex(TabelaCasos.CAMPO_OBITOS)
             val colData = cursor.getColumnIndex(TabelaCasos.CAMPO_DATA)
             val colIdCidade = cursor.getColumnIndex(TabelaCasos.CAMPO_ID_CIDADES)
+            val colNomeCid = cursor.getColumnIndex(TabelaCasos.CAMPO_EXTERNO_NOME_CIDADE)
 
             val id = cursor.getLong(colId)
             val infetados = cursor.getInt(colInfetados)
@@ -32,8 +33,9 @@ data class Caso (var id: Long = -1, var infetados: Int, var ativos: Int, var obi
             val obitos = cursor.getInt(colObitos)
             val data = Date(cursor.getLong(colData))
             val id_cidades = cursor.getLong(colIdCidade)
+            val nomeCidade = if (colNomeCid != -1) cursor.getString(colNomeCid) else null
 
-            return Caso(id, infetados, ativos, obitos, data, id_cidades)
+            return Caso(id, infetados, ativos, obitos, data, id_cidades, nomeCidade)
         }
     }
 }
