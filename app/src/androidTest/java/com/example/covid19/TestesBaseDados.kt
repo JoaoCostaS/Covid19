@@ -183,7 +183,14 @@ class TestesBaseDados {
         cidade.id = insereCidade(tabelaCidades, cidade)
 
         val tabelaCasos = TabelaCasos(db)
-        val caso = Caso(infetados = 3415, ativos = 60, obitos = 53, data = Data(2020, 5, 20), id_cidades = cidade.id)
+        val caso = Caso(
+                infetados = 3415,
+                ativos = 60,
+                obitos = 53,
+                data = Data(2020, 5, 20),
+                id_cidades = cidade.id,
+                nomeCidade = cidade.nome //necessário apenas nos testes
+        )
         caso.id = insereCaso(tabelaCasos, caso)
 
         assertEquals(caso, getCasoBaseDados(tabelaCasos, caso.id))
@@ -203,14 +210,21 @@ class TestesBaseDados {
         cidadePorto.id = insereCidade(tabelaCidades, cidadePorto)
 
         val tabelaCasos = TabelaCasos(db)
-        val caso = Caso(infetados = 5000, ativos = 100, obitos = 10, data = Data(2020, 5, 20), id_cidades = cidadeCovilha.id)
+        val caso = Caso(
+                infetados = 5000,
+                ativos = 100,
+                obitos = 10,
+                data = Data(2020, 5, 20),
+                id_cidades = cidadeCovilha.id,
+                nomeCidade = cidadeCovilha.nome //necessário apenas nos testes
+        )
         caso.id = insereCaso(tabelaCasos, caso)
-
 
         caso.infetados = 5500
         caso.ativos = 150
         caso.obitos =15
         caso.id_cidades = cidadePorto.id
+        caso.nomeCidade = cidadePorto.nome
 
         val registosAlterados = tabelaCasos.update(
                 caso.toContentValues(),
@@ -232,7 +246,14 @@ class TestesBaseDados {
         cidade.id = insereCidade(tabelaCidades, cidade)
 
         val tabelaCasos = TabelaCasos(db)
-        val caso = Caso(infetados = 10, ativos = 1500, obitos = 0, data = Data(1950, 10, 30), id_cidades = cidade.id)
+        val caso = Caso(
+                infetados = 10,
+                ativos = 1500,
+                obitos = 0,
+                data = Data(1950, 10, 30),
+                id_cidades = cidade.id,
+                nomeCidade = cidade.nome //necessário apenas nos testes
+        )
         caso.id = insereCaso(tabelaCasos, caso)
 
         val registosEliminados = tabelaCasos.delete(
@@ -254,7 +275,14 @@ class TestesBaseDados {
         cidade.id = insereCidade(tabelaCidades, cidade)
 
         val tabelaCasos = TabelaCasos(db)
-        val caso = Caso(infetados = 2000, ativos = 12, obitos = 155, data = Data(2021, 5, 25), id_cidades = cidade.id)
+        val caso = Caso(
+                infetados = 2000,
+                ativos = 12,
+                obitos = 155,
+                data = Data(2021, 5, 25),
+                id_cidades = cidade.id,
+                nomeCidade = cidade.nome //necessário apenas nos testes
+        )
         caso.id = insereCaso(tabelaCasos, caso)
 
         assertEquals(caso, getCasoBaseDados(tabelaCasos, caso.id))
