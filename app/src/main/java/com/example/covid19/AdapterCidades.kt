@@ -42,6 +42,7 @@ class AdapterCidades (val fragment: ListaCidadesFragment): RecyclerView.Adapter<
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
             DadosApp.cidadeSelecionado = cidade
+            DadosApp.activity.atualizaMenuListaCidades(true)
         }
 
         private fun desSeleciona(){

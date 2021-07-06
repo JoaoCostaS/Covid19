@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,11 +19,15 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+        DadosApp.activity = this
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_lista_cidades, menu)
+        this.menu = menu
+        atualizaMenuListaCidades(false)
+
         return true
     }
 
@@ -34,5 +39,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    fun atualizaMenuListaCidades(mostraBotoesAlterarEliminar : Boolean){
+        menu.findItem(R.id.action_alterar_cidade).setVisible(mostraBotoesAlterarEliminar)
+        menu.findItem(R.id.action_eliminar_cidade).setVisible(mostraBotoesAlterarEliminar)
     }
 }
