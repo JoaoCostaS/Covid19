@@ -17,11 +17,14 @@ class AdapterCidades (val fragment: ListaCidadesFragment): RecyclerView.Adapter<
     class ViewHolderCidade(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val textViewNome = itemView.findViewById<TextView>(R.id.textViewIdCidade)
 
+        private lateinit var cidade: Cidade
+
         init{
             itemView.setOnClickListener(this)
         }
 
         fun atualizaCidade(cidade: Cidade) {
+            this.cidade = cidade
             textViewNome.text = cidade.nome
         }
 
@@ -38,6 +41,7 @@ class AdapterCidades (val fragment: ListaCidadesFragment): RecyclerView.Adapter<
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
+            DadosApp.cidadeSelecionado = cidade
         }
 
         private fun desSeleciona(){
