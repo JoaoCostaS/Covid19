@@ -17,7 +17,7 @@ class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio) : Recycle
 
 
     class ViewHolderFocoContagio(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textViewIdCidade = itemView.findViewById<TextView>(R.id.textViewCidade)
+        private val textViewIdCidade = itemView.findViewById<TextView>(R.id.textViewIdCidade)
         private val textViewLocal = itemView.findViewById<TextView>(R.id.textViewLocal)
 
         fun atualizaFocoContagio(focoContagio: FocoContagio) {

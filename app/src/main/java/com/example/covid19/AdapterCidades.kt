@@ -15,7 +15,7 @@ class AdapterCidades (val fragment: ListaCidadesFragment): RecyclerView.Adapter<
         }
 
     class ViewHolderCidade(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewCidade)
+        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewIdCidade)
 
         fun atualizaCidade(cidade: Cidade) {
             textViewNome.text = cidade.nome
