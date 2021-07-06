@@ -38,15 +38,57 @@ class TabelaFocoContagio(db: SQLiteDatabase) {
             having: String?,
             orderBy: String?
     ): Cursor? {
+        val ultimaColuna = columns.size -1
 
-        return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        var posCampoNomeCidade = -1 //-1 indica que não foi pedido
+        for (i in 0..ultimaColuna){
+            if (columns[i] == CAMPO_EX_NOME_CIDADE){
+                posCampoNomeCidade = i
+                break
+            }
+        }
+
+        if (posCampoNomeCidade == -1) { // não existem campos externos de outra tabela
+            return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        }
+
+        var colunas = ""
+        for(i in 0..ultimaColuna){
+            var nomeColuna = if(i == posCampoNomeCidade){
+                "${TabelaCidades.NOME_TABELA}.${TabelaCidades.CAMPO_NOME} AS ${CAMPO_EX_NOME_CIDADE}"
+            }else {
+                "${NOME_TABELA}.${columns[i]}"
+            }
+
+            if (i > 0) colunas += ","
+            colunas += nomeColuna
+        }
+        val tabelas = "${NOME_TABELA} INNER JOIN ${TabelaCidades.NOME_TABELA} ON ${TabelaCidades.NOME_TABELA}.${BaseColumns._ID} = ${NOME_TABELA}.${CAMPO_ID_CIDADES}"
+
+        var sqlAdicional = ""
+
+        if (selection != null) sqlAdicional += " WHERE $selection"
+
+        if (groupBy != null) {
+            sqlAdicional += " GROUP BY $groupBy"
+            if (having != null) sqlAdicional += " HAVING $having"
+        }
+        if (orderBy != null){
+            sqlAdicional += " ORDER BY $orderBy"
+        }
+
+        val sql = "SELECT $colunas FROM $tabelas$sqlAdicional"
+        return db.rawQuery(sql, selectionArgs)
     }
+
+
     companion object{
         const val NOME_TABELA = "focoContagio"
         const val CAMPO_LOCAL = "local"
         const val CAMPO_ID_CIDADES = "id_cidades"
+        const val CAMPO_EX_NOME_CIDADE = "cidade_nome"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_LOCAL, CAMPO_ID_CIDADES)
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_LOCAL, CAMPO_ID_CIDADES, CAMPO_EX_NOME_CIDADE)
     }
 
 
