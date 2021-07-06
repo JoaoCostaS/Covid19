@@ -384,7 +384,11 @@ class TestesBaseDados {
         cidade.id = insereCidade(tabelaCidades, cidade)
 
         val tabelaFocoContagio = TabelaFocoContagio(db)
-        val focoContagio = FocoContagio(local = "Escola Profissional", id_cidades = cidade.id)
+        val focoContagio = FocoContagio(
+                local = "Escola Profissional",
+                id_cidades = cidade.id,
+                nomeCidade = cidade.nome //necessário apenas nos testes
+        )
         focoContagio.id = insereFocoContagio(tabelaFocoContagio, focoContagio)
 
         assertEquals(focoContagio, getFocoContagioBaseDados(tabelaFocoContagio, focoContagio.id))
@@ -403,12 +407,17 @@ class TestesBaseDados {
         cidadeMafra.id = insereCidade(tabelaCidades, cidadeMafra)
 
         val tabelaFocoContagio = TabelaFocoContagio(db)
-        val focoContagio = FocoContagio(local = "BB", id_cidades = cidadeVendadoPinheiro.id)
+        val focoContagio = FocoContagio(
+                local = "BB",
+                id_cidades = cidadeVendadoPinheiro.id,
+                nomeCidade = cidadeVendadoPinheiro.nome //necessário apenas nos testes
+        )
         focoContagio.id = insereFocoContagio(tabelaFocoContagio, focoContagio)
 
 
         focoContagio.local = "MediaPro"
         focoContagio.id_cidades = cidadeMafra.id
+        focoContagio.nomeCidade = cidadeMafra.nome
 
         val registosAlterados = tabelaFocoContagio.update(
                 focoContagio.toContentValues(),
@@ -430,7 +439,11 @@ class TestesBaseDados {
         cidade.id = insereCidade(tabelaCidades, cidade)
 
         val tabelaFocoContagio = TabelaFocoContagio(db)
-        val focoContagio = FocoContagio(local = "Restaurante Wilson" , id_cidades = cidade.id)
+        val focoContagio = FocoContagio(
+                local = "Restaurante Wilson" ,
+                id_cidades = cidade.id,
+                nomeCidade = cidade.nome //necessário apenas nos testes
+        )
         focoContagio.id = insereFocoContagio(tabelaFocoContagio, focoContagio)
 
         val registosEliminados = tabelaFocoContagio.delete(
@@ -451,7 +464,11 @@ class TestesBaseDados {
         cidade.id = insereCidade(tabelaCidades, cidade)
 
         val tabelaFocoContagio = TabelaFocoContagio(db)
-        val focoContagio = FocoContagio(local = "Praça", id_cidades = cidade.id)
+        val focoContagio = FocoContagio(
+                local = "Praça",
+                id_cidades = cidade.id,
+                nomeCidade = cidade.nome //necessário apenas nos testes
+        )
         focoContagio.id = insereFocoContagio(tabelaFocoContagio, focoContagio)
 
         assertEquals(focoContagio, getFocoContagioBaseDados(tabelaFocoContagio, focoContagio.id))
