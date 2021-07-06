@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editTextCidade"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".NovaCidadeFragment" >
+    tools:context=".NovaCidadeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margem_ecran">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextCidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/cidade"
-            android:inputType="textLongMessage|textAutoComplete" />
+            android:layout_margin="@dimen/margem_ecran"
+            android:hint="@string/cidadee" />
     </com.google.android.material.textfield.TextInputLayout>
-</LinearLayout>
+</FrameLayout>

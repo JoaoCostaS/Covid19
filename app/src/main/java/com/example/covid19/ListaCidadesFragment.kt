@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
+class  ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
    // private var _binding: ListaCidadesFragmentBinding? = null
     private var adapterCidades : AdapterCidades? = null
 
@@ -31,6 +32,7 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
         savedInstanceState: Bundle?
     ): View? {
 
+        DadosApp.listaCidadesFragment = this
         //_binding= ListaCidadesFragmentBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
        // return binding.root
@@ -49,13 +51,32 @@ class ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>{
             .initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
 
     }
-    // button_Cidade.setOnClickListener{
-    //   findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-    // }
 
+    //   findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+
+    fun navegaNovoCidade(){
+        findNavController().navigate(R.id.action_ListaCidadesFragment_to_novaCidadeFragment)
+    }
+
+    fun navegaEditarCidade(){
+        //todo:
+    }
+    fun navegaEliminarCidade(){
+        //todo:
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
+    }
+
+    fun processedOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_novo_cidade -> navegaNovoCidade()
+            R.id.action_alterar_cidade -> navegaEditarCidade()
+            R.id.action_eliminar_cidade -> navegaEliminarCidade()
+            else -> return false
+        }
+        return true
     }
 
     /**

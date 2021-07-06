@@ -8,17 +8,20 @@
     <fragment
         android:id="@+id/ListaCidadesFragment"
         android:name="com.example.covid19.ListaCidadesFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/lista_cidades_fragment_label"
         tools:layout="@layout/fragment_lista_cidades">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_ListaCidadesFragment_to_novaCidadeFragment"
+            app:destination="@id/novaCidadeFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.example.covid19.MenuFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/menu_fragment_label"
         tools:layout="@layout/menu_fragment">
 
         <action
@@ -49,5 +52,14 @@
         <action
             android:id="@+id/action_fragment_lista_foco_contagio_to_menuFragment"
             app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novaCidadeFragment"
+        android:name="com.example.covid19.NovaCidadeFragment"
+        android:label="fragment_nova_cidade"
+        tools:layout="@layout/fragment_nova_cidade" >
+        <action
+            android:id="@+id/action_novaCidadeFragment_to_ListaCidadesFragment"
+            app:destination="@id/ListaCidadesFragment" />
     </fragment>
 </navigation>

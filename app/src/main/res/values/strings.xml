@@ -2,13 +2,10 @@
     <string name="app_name">Covid19</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="lista_cidades_fragment_label">First Fragment</string>
+    <string name="menu_fragment_label">Second Fragment</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
     <string name="cidades">Cidades</string>
     <string name="casos">Casos</string>
     <string name="foco_de_contagio">Foco de Contagio</string>
@@ -19,5 +16,5 @@
     <string name="novacidade">NovaCidade</string>
     <string name="alterarcidade">AlterarCidade</string>
     <string name="eliminarcidade">EliminarCidade</string>
-    <string name="cidade">Cidade</string>
+    <string name="cidadee">Cidadee</string>
 </resources>
