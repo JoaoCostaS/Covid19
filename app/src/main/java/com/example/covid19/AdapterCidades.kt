@@ -14,11 +14,39 @@ class AdapterCidades (val fragment: ListaCidadesFragment): RecyclerView.Adapter<
             notifyDataSetChanged()
         }
 
-    class ViewHolderCidade(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolderCidade(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val textViewNome = itemView.findViewById<TextView>(R.id.textViewIdCidade)
+
+        init{
+            itemView.setOnClickListener(this)
+        }
 
         fun atualizaCidade(cidade: Cidade) {
             textViewNome.text = cidade.nome
+        }
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            selecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            selecionado = this
+            itemView.setBackgroundResource(R.color.cor_selecao)
+        }
+
+        private fun desSeleciona(){
+            selecionado = null
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        companion object{
+            var selecionado : ViewHolderCidade? = null
         }
 
     }
