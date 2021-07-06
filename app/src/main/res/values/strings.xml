@@ -19,4 +19,5 @@
     <string name="novacidade">NovaCidade</string>
     <string name="alterarcidade">AlterarCidade</string>
     <string name="eliminarcidade">EliminarCidade</string>
+    <string name="cidade">Cidade</string>
 </resources>
