@@ -20,6 +20,7 @@ class AdapterCasos (val fragment: Fragment_lista_casos): RecyclerView.Adapter<Ad
         private val textViewAtivos = itemView.findViewById<TextView>(R.id.textViewAtivos)
         private val textViewObitos = itemView.findViewById<TextView>(R.id.textViewObitos)
         private val textViewData = itemView.findViewById<TextView>(R.id.textViewData)
+        private val textViewCidadeC = itemView.findViewById<TextView>(R.id.textViewCidadeC)
 
         fun atualizaCaso(caso: Caso) {
             textViewId.text = caso.id_cidades.toString()
@@ -27,6 +28,7 @@ class AdapterCasos (val fragment: Fragment_lista_casos): RecyclerView.Adapter<Ad
             textViewAtivos.text = caso.ativos.toString()
             textViewObitos.text = caso.obitos.toString()
             textViewData.text = caso.data.toString()
+            textViewCidadeC.text = caso.nomeCidade
         }
 
     }
