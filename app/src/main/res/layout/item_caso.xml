@@ -1,67 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textViewId"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginEnd="@dimen/margem_campos"
+        android:layout_marginRight="@dimen/margem_campos"
+        android:paddingBottom="@dimen/margem_campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/cor_destaque"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="3" />
+
+    <TextView
+        android:id="@+id/textViewCidadeC"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_campos"
         android:layout_marginLeft="@dimen/margem_campos"
         android:layout_marginTop="@dimen/margem_campos"
         android:layout_marginEnd="@dimen/margem_campos"
         android:layout_marginRight="@dimen/margem_campos"
+        android:paddingBottom="@dimen/margem_campos"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="Faro" />
+        app:layout_constraintEnd_toStartOf="@+id/textViewId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Lisboa" />
 
     <TextView
         android:id="@+id/textViewInfetados"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margem_campos"
-        android:layout_marginLeft="@dimen/margem_campos"
         android:layout_marginTop="@dimen/margem_campos"
-        android:layout_marginEnd="@dimen/margem_campos"
-        android:layout_marginRight="@dimen/margem_campos"
+        android:paddingBottom="@dimen/margem_campos"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewCidadeC"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCidadeC"
         tools:text="3415" />
 
     <TextView
         android:id="@+id/textViewAtivos"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margem_campos"
-        android:layout_marginLeft="@dimen/margem_campos"
         android:layout_marginTop="@dimen/margem_campos"
-        android:layout_marginEnd="@dimen/margem_campos"
-        android:layout_marginRight="@dimen/margem_campos"
+        android:paddingBottom="@dimen/margem_campos"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewInfetados"
+        app:layout_constraintTop_toBottomOf="@+id/textViewInfetados"
         tools:text="60" />
 
     <TextView
         android:id="@+id/textViewObitos"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margem_campos"
-        android:layout_marginLeft="@dimen/margem_campos"
         android:layout_marginTop="@dimen/margem_campos"
-        android:layout_marginEnd="@dimen/margem_campos"
-        android:layout_marginRight="@dimen/margem_campos"
+        android:paddingBottom="@dimen/margem_campos"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewAtivos"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAtivos"
         tools:text="53" />
 
     <TextView
         android:id="@+id/textViewData"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margem_campos"
-        android:layout_marginLeft="@dimen/margem_campos"
         android:layout_marginTop="@dimen/margem_campos"
-        android:layout_marginEnd="@dimen/margem_campos"
-        android:layout_marginRight="@dimen/margem_campos"
+        android:paddingBottom="@dimen/margem_campos"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewObitos"
+        app:layout_constraintTop_toBottomOf="@+id/textViewObitos"
         tools:text="2020, 5, 20" />
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
