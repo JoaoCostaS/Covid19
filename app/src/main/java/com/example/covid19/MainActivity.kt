@@ -11,7 +11,7 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
     private lateinit var menu: Menu
 
-    var menuAtual = R.menu.menu_lista_cidades
+    var menuAtual = R.menu.menu_menu
         set(value) {
             field = value
             invalidateOptionsMenu()
@@ -36,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         if (menuAtual == R.menu.menu_lista_cidades) {
             atualizaMenuListaCidades(false)
         }
+        if (menuAtual == R.menu.menu_lista_casos) {
+            atualizaMenuListaCasos(false)
+        }
+
 
         return true
     }

@@ -13,7 +13,8 @@ class NovoCasoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as MainActivity).menuAtual = R.menu.menu_lista_casos
+        DadosApp.fragment= this
+        (activity as MainActivity).menuAtual = R.menu.menu_novo_caso
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_novo_caso, container, false)
     }

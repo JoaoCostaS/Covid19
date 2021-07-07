@@ -58,7 +58,6 @@ class EditaCidadeFragment : Fragment() {
             null,
             null
         )
-
         if(registos != 1) {
             Toast.makeText(
                 requireContext(),
@@ -76,7 +75,16 @@ class EditaCidadeFragment : Fragment() {
         navegaListaCidades()
 
     }
+    fun processedOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_guardar_edita_cidade -> guardar()
+            R.id.action_cancelar_edita_cidade-> navegaListaCidades()
+            else -> return false
+        }
+        return true
+    }
 
+    /*
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_guardar_edita_cidade -> guardar()
@@ -84,5 +92,5 @@ class EditaCidadeFragment : Fragment() {
             else -> return false
         }
         return true
-    }
+    }*/
 }
