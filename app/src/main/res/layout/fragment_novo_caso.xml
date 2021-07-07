@@ -1,14 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NovoCasoFragment">
+    android:orientation="vertical"
+    tools:context=".NovoCasoFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margem_ecran"
+        tools:text="Cidade" />
 
-</FrameLayout>
+    <Spinner
+        android:id="@+id/spinnerCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margem_ecran"
+        android:layout_marginLeft="@dimen/margem_ecran"
+        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginEnd="@dimen/margem_ecran"
+        android:layout_marginRight="@dimen/margem_ecran" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextInfetados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margem_ecran"
+                android:layout_marginLeft="@dimen/margem_ecran"
+                android:layout_marginTop="@dimen/margem_campos"
+                android:layout_marginEnd="@dimen/margem_ecran"
+                android:layout_marginRight="@dimen/margem_ecran"
+                android:hint="@string/infetados"
+                android:inputType="number" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAtivos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margem_ecran"
+                    android:layout_marginLeft="@dimen/margem_ecran"
+                    android:layout_marginTop="@dimen/margem_campos"
+                    android:layout_marginEnd="@dimen/margem_ecran"
+                    android:layout_marginRight="@dimen/margem_ecran"
+                    android:hint="@string/ativos"
+                    android:inputType="number" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextObitos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margem_ecran"
+                        android:layout_marginLeft="@dimen/margem_ecran"
+                        android:layout_marginTop="@dimen/margem_campos"
+                        android:layout_marginEnd="@dimen/margem_ecran"
+                        android:layout_marginRight="@dimen/margem_ecran"
+                        android:hint="@string/obitos"
+                        android:inputType="number" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/margem_ecran"
+                        android:layout_marginLeft="@dimen/margem_ecran"
+                        android:layout_marginTop="@dimen/margem_campos"
+                        android:layout_marginEnd="@dimen/margem_ecran"
+                        android:layout_marginRight="@dimen/margem_ecran">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextData"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/data"
+                            android:inputType="date" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>
