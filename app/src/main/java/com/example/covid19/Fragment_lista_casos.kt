@@ -4,11 +4,13 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -44,6 +46,25 @@ class Fragment_lista_casos : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> 
 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_CASOS, null, this)
+    }
+    fun navegaNovoCaso(){
+        findNavController().navigate(R.id.action_fragment_lista_casos_to_novoCasoFragment)
+    }
+    fun navegaAlterarCaso(){
+       // findNavController().navigate(R.id.action_listaCidadesFragment_to_editaCidadeFragment)
+    }
+    fun navegaEliminarCaso(){
+        //findNavController().navigate(R.id.action_listaCidadesFragment_to_eliminaCidadeFragment)
+    }
+
+    fun processedOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_novo_caso -> navegaNovoCaso()
+            R.id.action_alterar_caso -> navegaAlterarCaso()
+            R.id.action_eliminar_caso -> navegaEliminarCaso()
+            else -> return false
+        }
+        return true
     }
 
     /**

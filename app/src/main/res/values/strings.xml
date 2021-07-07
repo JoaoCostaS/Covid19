@@ -34,4 +34,6 @@
     <string name="ativos">Ativos</string>
     <string name="obitos">Obitos</string>
     <string name="data">Data</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
