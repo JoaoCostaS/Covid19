@@ -13,6 +13,7 @@ class NovoCasoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as MainActivity).menuAtual = R.menu.menu_lista_casos
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_novo_caso, container, false)
     }

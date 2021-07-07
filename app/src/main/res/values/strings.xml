@@ -28,12 +28,14 @@
     <string name="elimina_cidade_fragment_label">Eliminar_cidade?</string>
     <string name="erro_eliminar_cidade">Erro ao eliminar cidade</string>
     <string name="cidade_eliminada_sucesso">Cidade eliminada com sucesso</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="infetados">Infetados</string>
     <string name="ativos">Ativos</string>
     <string name="obitos">Obitos</string>
     <string name="data">Data</string>
-    <string name="guardar">Guardar</string>
-    <string name="cancelar">Cancelar</string>
+    <string name="Guardar">Guardar</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="novofococontagio">NovoFocoContagio</string>
+    <string name="alterarfococontagio">AlterarFocoContagio</string>
+    <string name="eliminarfococontagio">EliminarFocoContagio</string>
+
 </resources>

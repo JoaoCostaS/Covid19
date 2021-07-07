@@ -36,9 +36,6 @@ class MainActivity : AppCompatActivity() {
         if (menuAtual == R.menu.menu_lista_cidades) {
             atualizaMenuListaCidades(false)
         }
-        if (menuAtual == R.menu.menu_lista_casos) {
-            atualizaMenuListaCasos(false)
-        }
 
         return true
     }
@@ -57,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                 R.menu.menu_lista_cidades -> (DadosApp.fragment as ListaCidadesFragment).processedOpcaoMenu(item)
                 R.menu.menu_nova_cidade -> (DadosApp.fragment as NovaCidadeFragment).processedOpcaoMenu(item)
                 R.menu.menu_edita_cidade -> (DadosApp.fragment as EditaCidadeFragment).processedOpcaoMenu(item)
+                R.menu.menu_lista_casos -> (DadosApp.fragment as Fragment_lista_casos).processedOpcaoMenu(item)
                 else -> false
             }
         }
