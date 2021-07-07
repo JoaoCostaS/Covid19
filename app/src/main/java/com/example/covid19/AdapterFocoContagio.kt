@@ -16,15 +16,42 @@ class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio) : Recycle
 
 
 
-    class ViewHolderFocoContagio(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolderFocoContagio(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val textViewIdCidade = itemView.findViewById<TextView>(R.id.textViewIdCidade)
         private val textViewLocal = itemView.findViewById<TextView>(R.id.textViewLocal)
         private val textViewCida = itemView.findViewById<TextView>(R.id.textViewCida)
+
+        init {
+            itemView.setOnClickListener (this)
+        }
 
         fun atualizaFocoContagio(focoContagio: FocoContagio) {
             textViewIdCidade.text = focoContagio.id_cidades.toString()
             textViewLocal.text = focoContagio.local
             textViewCida.text = focoContagio.nomeCidade
+        }
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            selecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            selecionado = this
+            itemView.setBackgroundResource(R.color.cor_selecao)
+        }
+        private fun desSeleciona(){
+            selecionado = null
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        companion object{
+           var selecionado : ViewHolderFocoContagio? = null
         }
     }
 
