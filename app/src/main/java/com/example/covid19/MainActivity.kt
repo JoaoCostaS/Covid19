@@ -10,6 +10,12 @@ import android.view.MenuItem
 class MainActivity : AppCompatActivity() {
     private lateinit var menu: Menu
 
+    var menuAtual = R.menu.menu_lista_cidades
+        set(value) {
+            field = value
+            invalidateOptionsMenu()
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,9 +30,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_lista_cidades, menu)
+        menuInflater.inflate(menuAtual, menu)
         this.menu = menu
-        atualizaMenuListaCidades(false)
+        if (menuAtual == R.menu.menu_lista_cidades) {
+            atualizaMenuListaCidades(false)
+        }
 
         return true
     }
@@ -38,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> {
-                if (DadosApp.listaCidadesFragment.processedOpcaoMenu(item)){
+                if (DadosApp.listaCidadesFragment!!.processedOpcaoMenu(item)){
                     return true
                 }else
                     return super.onOptionsItemSelected(item)

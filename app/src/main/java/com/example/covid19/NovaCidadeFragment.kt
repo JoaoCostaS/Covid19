@@ -20,6 +20,9 @@ class NovaCidadeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        DadosApp.novaCidadeFragment = this
+        (activity as MainActivity).menuAtual = R.menu.menu_nova_cidade
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_nova_cidade, container, false)
     }

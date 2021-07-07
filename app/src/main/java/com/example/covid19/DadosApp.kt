@@ -3,7 +3,9 @@ package com.example.covid19
 class DadosApp {
     companion object{
         lateinit var activity: MainActivity
-        lateinit var listaCidadesFragment: ListaCidadesFragment
+        var listaCidadesFragment: ListaCidadesFragment? = null
+        var novaCidadeFragment: NovaCidadeFragment? = null
+
         var cidadeSelecionado : Cidade? = null
     }
 }
