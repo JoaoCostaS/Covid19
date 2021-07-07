@@ -53,6 +53,7 @@ class AdapterCasos (val fragment: Fragment_lista_casos): RecyclerView.Adapter<Ad
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
             DadosApp.casoSelecionado = caso
+            DadosApp.activity.atualizaMenuListaCasos(true)
         }
 
         private fun desSeleciona(){

@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         if (menuAtual == R.menu.menu_lista_cidades) {
             atualizaMenuListaCidades(false)
         }
+        if (menuAtual == R.menu.menu_lista_casos) {
+            atualizaMenuListaCasos(false)
+        }
 
         return true
     }
@@ -63,5 +66,9 @@ class MainActivity : AppCompatActivity() {
     fun atualizaMenuListaCidades(mostraBotoesAlterarEliminar : Boolean){
         menu.findItem(R.id.action_alterar_cidade).setVisible(mostraBotoesAlterarEliminar)
         menu.findItem(R.id.action_eliminar_cidade).setVisible(mostraBotoesAlterarEliminar)
+    }
+    fun atualizaMenuListaCasos(mostraBotoesAlterarEliminar : Boolean){
+        menu.findItem(R.id.action_alterar_caso).setVisible(mostraBotoesAlterarEliminar)
+        menu.findItem(R.id.action_eliminar_caso).setVisible(mostraBotoesAlterarEliminar)
     }
 }
