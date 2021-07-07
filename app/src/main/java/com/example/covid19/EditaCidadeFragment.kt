@@ -29,6 +29,8 @@ class EditaCidadeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         editTextCidade = view.findViewById(R.id.editTextCidade)
+
+        editTextCidade.setText(DadosApp.cidadeSelecionado!!.nome)
     }
 
     fun navegaListaCidades(){

@@ -30,6 +30,7 @@ class NovaCidadeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         editTextCidade = view.findViewById(R.id.editTextCidade)
+
     }
 
     fun navegaListaCidades(){
