@@ -14,13 +14,17 @@ class AdapterCasos (val fragment: Fragment_lista_casos): RecyclerView.Adapter<Ad
             notifyDataSetChanged()
         }
 
-    class ViewHolderCaso(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolderCaso(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val textViewId = itemView.findViewById<TextView>(R.id.textViewId)
         private val textViewInfetados = itemView.findViewById<TextView>(R.id.textViewInfetados)
         private val textViewAtivos = itemView.findViewById<TextView>(R.id.textViewAtivos)
         private val textViewObitos = itemView.findViewById<TextView>(R.id.textViewObitos)
         private val textViewData = itemView.findViewById<TextView>(R.id.textViewData)
         private val textViewCidadeC = itemView.findViewById<TextView>(R.id.textViewCidadeC)
+
+        init{
+            itemView.setOnClickListener(this)
+        }
 
         fun atualizaCaso(caso: Caso) {
             textViewId.text = caso.id_cidades.toString()
@@ -29,6 +33,30 @@ class AdapterCasos (val fragment: Fragment_lista_casos): RecyclerView.Adapter<Ad
             textViewObitos.text = caso.obitos.toString()
             textViewData.text = caso.data.toString()
             textViewCidadeC.text = caso.nomeCidade
+        }
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            selecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            selecionado = this
+            itemView.setBackgroundResource(R.color.cor_selecao)
+        }
+
+        private fun desSeleciona(){
+            selecionado = null
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        companion object{
+            var selecionado : ViewHolderCaso? = null
         }
 
     }
