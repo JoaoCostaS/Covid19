@@ -16,13 +16,6 @@ class NovaCidadeFragment : Fragment() {
     private lateinit var editTextCidade: EditText
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         DadosApp.fragment= this
@@ -46,6 +39,7 @@ class NovaCidadeFragment : Fragment() {
         val cidade = editTextCidade.text.toString()
         if (cidade.isEmpty()){
             editTextCidade.setError(getString(R.string.cidade_obrigatoria))
+            editTextCidade.requestFocus()
             return
         }
         val cidades = Cidade(nome = cidade)
@@ -75,7 +69,4 @@ class NovaCidadeFragment : Fragment() {
         return true
     }
 
-    companion object {
-
-    }
 }
