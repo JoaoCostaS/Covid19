@@ -20,4 +20,9 @@
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="versao">Cidade v. 1.0</string>
+    <string name="cidade_obrigatoria">Preencha a cidade</string>
+    <string name="erro_inserir_cidade">Erro ao inserir cidade</string>
+    <string name="novo_caso">novo_caso</string>
+    <string name="alterar_caso">alterar_caso</string>
+    <string name="eliminar_caso">eliminar_caso</string>
 </resources>

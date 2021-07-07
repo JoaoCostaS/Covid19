@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 
 
 class NovaCidadeFragment : Fragment() {
@@ -42,6 +43,26 @@ class NovaCidadeFragment : Fragment() {
     }
 
     fun guardar(){
+        val cidade = editTextCidade.text.toString()
+        if (cidade.isEmpty()){
+            editTextCidade.setError(getString(R.string.cidade_obrigatoria))
+            return
+        }
+        val cidades = Cidade(nome = cidade)
+
+        val uri = activity?.contentResolver?.insert(
+                ContentProviderCovid.ENDERECO_CIDADES,
+                cidades.toContentValues()
+        )
+        if(uri == null) {
+            Snackbar.make(
+                    editTextCidade,
+                    getString(R.string.erro_inserir_cidade),
+                    Snackbar.LENGTH_LONG
+            ).show()
+            return
+        }
+        navegaListaCidades()
 
     }
 
