@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 
@@ -56,6 +57,12 @@ class NovaCidadeFragment : Fragment() {
             ).show()
             return
         }
+        Toast.makeText(
+            requireContext(),
+            R.string.erro_guardado_sucesso,
+            Toast.LENGTH_LONG
+        ).show()
+        return
         navegaListaCidades()
 
     }

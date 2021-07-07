@@ -1,62 +1,87 @@
 package com.example.covid19
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EditaCidadeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EditaCidadeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var editTextCidade: EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        DadosApp.fragment= this
+        (activity as MainActivity).menuAtual = R.menu.menu_edita_cidade
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_edita_cidade, container, false)
     }
 
-    fun processedOpcaoMenu(item: MenuItem): Boolean {
-        return false
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        editTextCidade = view.findViewById(R.id.editTextCidade)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EditaCidadeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                EditaCidadeFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
+    fun navegaListaCidades(){
+        findNavController().navigate(R.id.action_editaCidadeFragment_to_listaCidadesFragment)
+    }
+
+    fun guardar(){
+        val cidade = editTextCidade.text.toString()
+        if (cidade.isEmpty()){
+            editTextCidade.setError(getString(R.string.cidade_obrigatoria))
+            editTextCidade.requestFocus()
+            return
+        }
+        val cidades = DadosApp.cidadeSelecionado!!
+
+        cidades.nome = cidade
+
+        val uriCidade = Uri.withAppendedPath(
+            ContentProviderCovid.ENDERECO_CIDADES,
+            cidades.id.toString()
+        )
+
+        val registos = activity?.contentResolver?.update(
+            uriCidade,
+            cidades.toContentValues(),
+            null,
+            null
+        )
+
+        if(registos != 1) {
+            Toast.makeText(
+                requireContext(),
+                R.string.erro_alterar_cidade,
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+            Toast.makeText(
+                requireContext(),
+                R.string.erro_guardado_sucesso,
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        navegaListaCidades()
+
+    }
+
+    fun processedOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_guardar_nova_cidade -> guardar()
+            R.id.action_cancelar_nova_cidade-> navegaListaCidades()
+            else -> return false
+        }
+        return true
     }
 }
