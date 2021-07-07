@@ -51,8 +51,9 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             else -> when(menuAtual) {
-                R.menu.menu_lista_cidades -> DadosApp.listaCidadesFragment!!.processedOpcaoMenu(item)
-                R.menu.menu_nova_cidade -> DadosApp.novaCidadeFragment!!.processedOpcaoMenu(item)
+                R.menu.menu_lista_cidades -> (DadosApp.fragment as ListaCidadesFragment).processedOpcaoMenu(item)
+                R.menu.menu_nova_cidade -> (DadosApp.fragment as NovaCidadeFragment).processedOpcaoMenu(item)
+                R.menu.menu_edita_cidade -> (DadosApp.fragment as EditaCidadeFragment).processedOpcaoMenu(item)
                 else -> false
             }
         }

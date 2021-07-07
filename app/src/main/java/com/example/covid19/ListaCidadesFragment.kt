@@ -32,7 +32,7 @@ class  ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>
         savedInstanceState: Bundle?
     ): View? {
 
-        DadosApp.listaCidadesFragment = this
+        DadosApp.fragment = this
         (activity as MainActivity).menuAtual = R.menu.menu_lista_cidades
         //_binding= ListaCidadesFragmentBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment

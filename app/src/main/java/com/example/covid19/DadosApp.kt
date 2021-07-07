@@ -1,11 +1,13 @@
 package com.example.covid19
 
+import androidx.fragment.app.Fragment
+
 class DadosApp {
     companion object{
         lateinit var activity: MainActivity
-        var menuFragment: MenuFragment? = null
-        var listaCidadesFragment: ListaCidadesFragment? = null
-        var novaCidadeFragment: NovaCidadeFragment? = null
+        lateinit var fragment: Fragment
+
+
 
         var cidadeSelecionado : Cidade? = null
     }
