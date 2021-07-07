@@ -17,4 +17,6 @@
     <string name="alterarcidade">AlterarCidade</string>
     <string name="eliminarcidade">EliminarCidade</string>
     <string name="cidadee">Cidadee</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
