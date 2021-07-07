@@ -60,7 +60,7 @@ class  ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>
     }
 
     fun navegaEditarCidade(){
-        //todo:
+        findNavController().navigate(R.id.action_listaCidadesFragment_to_editaCidadeFragment)
     }
     fun navegaEliminarCidade(){
         //todo:

@@ -25,4 +25,6 @@
     <string name="novo_caso">novo_caso</string>
     <string name="alterar_caso">alterar_caso</string>
     <string name="eliminar_caso">eliminar_caso</string>
+    <string name="erro_alterar_cidade">Erro ao alterar cidade</string>
+    <string name="erro_guardado_sucesso">Cidade guardada com sucesso</string>
 </resources>
