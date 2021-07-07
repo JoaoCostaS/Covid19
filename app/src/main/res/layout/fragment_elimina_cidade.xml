@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EliminaCidadeFragment">
+    android:orientation="vertical"
+    tools:context=".EliminaCidadeFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margem_ecran"
+        android:layout_marginLeft="@dimen/margem_ecran"
+        android:layout_marginTop="@dimen/margem_ecran"
+        android:layout_marginEnd="@dimen/margem_ecran"
+        android:layout_marginRight="@dimen/margem_ecran"
+        android:text="@string/cidade"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/cor_destaque" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margem_ecran"
+        android:layout_marginLeft="@dimen/margem_ecran"
+        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginEnd="@dimen/margem_ecran"
+        android:layout_marginRight="@dimen/margem_ecran"
+        tools:text="Lisboa" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+</LinearLayout>
