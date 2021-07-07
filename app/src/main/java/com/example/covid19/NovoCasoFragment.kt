@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -144,12 +145,20 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         atualizaSpinerCidades(null)
     }
 
+    private fun atualizaSpinerCidades(data: Cursor?) {
+        spinnerCidade.adapter = SimpleCursorAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                data,
+                arrayOf(TabelaCidades.CAMPO_NOME),
+                intArrayOf(android.R.id.text1),
+                0
+        )
+    }
 
     companion object {
         const val ID_LOADER_MANAGER_CIDADES = 0
     }
 
-    private fun atualizaSpinerCidades(data: Cursor?) {
-        TODO("Not yet implemented")
-    }
+
 }
