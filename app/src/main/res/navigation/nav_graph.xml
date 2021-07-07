@@ -6,7 +6,7 @@
     app:startDestination="@id/menuFragment">
 
     <fragment
-        android:id="@+id/ListaCidadesFragment"
+        android:id="@+id/listaCidadesFragment"
         android:name="com.example.covid19.ListaCidadesFragment"
         android:label="@string/lista_cidades_fragment_label"
         tools:layout="@layout/fragment_lista_cidades">
@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_ListaCidadesFragment_to_novaCidadeFragment"
             app:destination="@id/novaCidadeFragment" />
+        <action
+            android:id="@+id/action_listaCidadesFragment_to_editaCidadeFragment"
+            app:destination="@id/editaCidadeFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -26,7 +29,7 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/ListaCidadesFragment" />
+            app:destination="@id/listaCidadesFragment" />
         <action
             android:id="@+id/action_menuFragment_to_fragment_lista_casos"
             app:destination="@id/fragment_lista_casos" />
@@ -60,6 +63,15 @@
         tools:layout="@layout/fragment_nova_cidade" >
         <action
             android:id="@+id/action_novaCidadeFragment_to_ListaCidadesFragment"
-            app:destination="@id/ListaCidadesFragment" />
+            app:destination="@id/listaCidadesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editaCidadeFragment"
+        android:name="com.example.covid19.EditaCidadeFragment"
+        android:label="fragment_edita_cidade"
+        tools:layout="@layout/fragment_edita_cidade" >
+        <action
+            android:id="@+id/action_editaCidadeFragment_to_listaCidadesFragment"
+            app:destination="@id/listaCidadesFragment" />
     </fragment>
 </navigation>
