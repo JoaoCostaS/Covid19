@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.navigation.fragment.findNavController
 
 
 class NovaCidadeFragment : Fragment() {
@@ -29,7 +29,7 @@ class NovaCidadeFragment : Fragment() {
     }
 
     fun navegaListaCidades(){
-        //todo:navegar lista cidades
+        findNavController().navigate(R.id.action_novaCidadeFragment_to_ListaCidadesFragment)
     }
 
     fun guardar(){
