@@ -45,7 +45,6 @@ class EditaCidadeFragment : Fragment() {
             return
         }
         val cidades = DadosApp.cidadeSelecionado!!
-
         cidades.nome = cidade
 
         val uriCidade = Uri.withAppendedPath(
@@ -80,8 +79,8 @@ class EditaCidadeFragment : Fragment() {
 
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_nova_cidade -> guardar()
-            R.id.action_cancelar_nova_cidade-> navegaListaCidades()
+            R.id.action_guardar_edita_cidade -> guardar()
+            R.id.action_cancelar_edita_cidade-> navegaListaCidades() //não funciona
             else -> return false
         }
         return true

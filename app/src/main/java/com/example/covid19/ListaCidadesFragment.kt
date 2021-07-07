@@ -63,7 +63,7 @@ class  ListaCidadesFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor>
         findNavController().navigate(R.id.action_listaCidadesFragment_to_editaCidadeFragment)
     }
     fun navegaEliminarCidade(){
-        //todo:
+        findNavController().navigate(R.id.action_listaCidadesFragment_to_eliminaCidadeFragment)
     }
 
     override fun onDestroyView() {
