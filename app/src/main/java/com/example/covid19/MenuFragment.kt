@@ -17,6 +17,8 @@ class MenuFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        DadosApp.menuFragment = this
+        (activity as MainActivity).menuAtual = R.menu.menu_menu
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.menu_fragment, container, false)
     }
