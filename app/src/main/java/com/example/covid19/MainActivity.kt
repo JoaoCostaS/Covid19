@@ -6,6 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     private lateinit var menu: Menu
@@ -42,16 +43,21 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> {
-                if (DadosApp.listaCidadesFragment!!.processedOpcaoMenu(item)){
-                    return true
-                }else
-                    return super.onOptionsItemSelected(item)
+        // as you specify a pare nt activity in AndroidManifest.xml.
+        val opcaoProcessada = when (item.itemId) {
+            //return when (item.itemId) {
+            R.id.action_settings -> {
+                Toast.makeText(this, R.string.versao, Toast.LENGTH_LONG).show()
+                true
+            }
+            else -> when(menuAtual) {
+                R.menu.menu_lista_cidades -> DadosApp.listaCidadesFragment!!.processedOpcaoMenu(item)
+                R.menu.menu_nova_cidade -> DadosApp.novaCidadeFragment!!.processedOpcaoMenu(item)
+                else -> false
             }
         }
+        return if(opcaoProcessada) true else super.onOptionsItemSelected(item)
+
     }
     fun atualizaMenuListaCidades(mostraBotoesAlterarEliminar : Boolean){
         menu.findItem(R.id.action_alterar_cidade).setVisible(mostraBotoesAlterarEliminar)
