@@ -31,6 +31,8 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        DadosApp.fragment = this
+        (activity as MainActivity).menuAtual = R.menu.menu_lista_foco_contagio
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lista_foco_contagio, container, false)
     }

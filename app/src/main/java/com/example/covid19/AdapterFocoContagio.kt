@@ -21,11 +21,15 @@ class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio) : Recycle
         private val textViewLocal = itemView.findViewById<TextView>(R.id.textViewLocal)
         private val textViewCida = itemView.findViewById<TextView>(R.id.textViewCida)
 
+        private lateinit var focoContagio: FocoContagio
+
         init {
             itemView.setOnClickListener (this)
         }
 
         fun atualizaFocoContagio(focoContagio: FocoContagio) {
+            this.focoContagio = focoContagio
+
             textViewIdCidade.text = focoContagio.id_cidades.toString()
             textViewLocal.text = focoContagio.local
             textViewCida.text = focoContagio.nomeCidade
@@ -44,6 +48,7 @@ class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio) : Recycle
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
+            DadosApp.focoContagioSelecionado = focoContagio
         }
         private fun desSeleciona(){
             selecionado = null

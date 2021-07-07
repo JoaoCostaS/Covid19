@@ -3,14 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/action_novo_foco_contagio"
         android:icon="@android:drawable/ic_input_add"
         android:title="@string/novofococontagio"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/action_alterar_foco_contagio"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/alterarfococontagio"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/action_eliminar_foco_contagio"
         android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/eliminarfococontagio"
         app:showAsAction="ifRoom" />
