@@ -26,4 +26,6 @@
     <string name="erro_alterar_cidade">Erro ao alterar cidade</string>
     <string name="erro_guardado_sucesso">Cidade guardada com sucesso</string>
     <string name="elimina_cidade_fragment_label">Eliminar_cidade?</string>
+    <string name="erro_eliminar_cidade">Erro ao eliminar cidade</string>
+    <string name="cidade_eliminada_sucesso">Cidade eliminada com sucesso</string>
 </resources>

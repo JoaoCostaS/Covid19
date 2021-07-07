@@ -10,5 +10,6 @@ class DadosApp {
 
 
         var cidadeSelecionado : Cidade? = null
+        var casoSelecionado : Caso? = null
     }
 }
