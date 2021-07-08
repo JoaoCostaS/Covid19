@@ -39,7 +39,9 @@ class MainActivity : AppCompatActivity() {
         if (menuAtual == R.menu.menu_lista_casos) {
             atualizaMenuListaCasos(false)
         }
-
+        if (menuAtual == R.menu.menu_lista_foco_contagio) {
+            atualizaMenuListaFocoContagio(false)
+        }
 
         return true
     }
@@ -73,5 +75,9 @@ class MainActivity : AppCompatActivity() {
     fun atualizaMenuListaCasos(mostraBotoesAlterarEliminar : Boolean){
         menu.findItem(R.id.action_alterar_caso).setVisible(mostraBotoesAlterarEliminar)
         menu.findItem(R.id.action_eliminar_caso).setVisible(mostraBotoesAlterarEliminar)
+    }
+    fun atualizaMenuListaFocoContagio(mostraBotoesAlterarEliminar : Boolean){
+        menu.findItem(R.id.action_alterar_foco_contagio).setVisible(mostraBotoesAlterarEliminar)
+        menu.findItem(R.id.action_eliminar_foco_contagio).setVisible(mostraBotoesAlterarEliminar)
     }
 }

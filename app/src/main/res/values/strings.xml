@@ -37,5 +37,9 @@
     <string name="novofococontagio">NovoFocoContagio</string>
     <string name="alterarfococontagio">AlterarFocoContagio</string>
     <string name="eliminarfococontagio">EliminarFocoContagio</string>
+    <string name="infetados_obrigatorio">Preencha os infetados</string>
+    <string name="ativos_obrigatorio">Preencha os ativos</string>
+    <string name="obitos_obrigatorio">Preencha os obitos</string>
+    <string name="data_obrigatoria">Data obrigatoria</string>
 
 </resources>

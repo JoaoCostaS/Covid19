@@ -49,6 +49,7 @@ class AdapterFocoContagio (val fragment: Fragment_lista_foco_contagio) : Recycle
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
             DadosApp.focoContagioSelecionado = focoContagio
+            DadosApp.activity.atualizaMenuListaFocoContagio(true)
         }
         private fun desSeleciona(){
             selecionado = null

@@ -51,7 +51,30 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         findNavController().navigate(R.id.action_novoCasoFragment_to_fragment_lista_casos)
     }
     fun guardarCaso(){
+        val infetados = editTextInfetados.text.toString()
+        if (infetados.isEmpty()){
+            editTextInfetados.setError(getString(R.string.infetados_obrigatorio))
+            return
+        }
+        val ativos = editTextAtivos.text.toString()
+        if (ativos.isEmpty()){
+            editTextAtivos.setError(getString(R.string.ativos_obrigatorio))
+            return
+        }
+        val obitos = editTextObitos.text.toString()
+        if (obitos.isEmpty()){
+            editTextObitos.setError(getString(R.string.obitos_obrigatorio))
+            return
+        }
+        val data = editTextData.text.toString()
+        if (data.isEmpty()){
+            editTextData.setError(getString(R.string.data_obrigatoria))
+            return
+        }
+        val idCidade = spinnerCidade.selectedItemId
 
+        //val caso = Caso(infetados = infetados, ativos = ativos, obitos = obitos, data = data, id_cidades = idCidade)
+        //activity?.contentResolver.insert(ContentProviderCovid.ENDERECO_CASOS, caso.to)
     }
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
