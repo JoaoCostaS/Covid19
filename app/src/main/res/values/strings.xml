@@ -44,5 +44,7 @@
 
     <string name="Cidade">Cidade</string>
     <string name="local">Local</string>
+    <string name="guardarfoco">GuardarFoco</string>
+    <string name="cancelarfoco">CancelarFoco</string>
 
 </resources>
