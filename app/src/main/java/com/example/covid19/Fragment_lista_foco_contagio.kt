@@ -4,11 +4,13 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -47,6 +49,25 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
         LoaderManager.getInstance(this)
             .initLoader(Fragment_lista_foco_contagio.ID_LOADER_MANAGER_FOCO_CONTAGIO, null, this)
 
+    }
+
+    fun navegaNovoFocoContagio(){
+        findNavController().navigate(R.id.action_fragment_lista_foco_contagio_to_novoFocoContagioFragment)
+    }
+    fun navegaAlterarFocoContagio(){
+
+    }
+    fun navegaEliminarFocoContagio(){
+
+    }
+    fun processedOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_novo_foco_contagio -> navegaNovoFocoContagio()
+            R.id.action_alterar_foco_contagio -> navegaAlterarFocoContagio()
+            R.id.action_eliminar_foco_contagio -> navegaEliminarFocoContagio()
+            else -> return false
+        }
+        return true
     }
     /**
      * Instantiate and return a new Loader for the given ID.
