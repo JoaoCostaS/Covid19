@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
@@ -50,7 +51,7 @@ class NovoFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         val local = editTextLocal.text.toString()
         if (local.isEmpty()){
             editTextLocal.setError(getString(R.string.local_obrigatorio))
-            //editTextLocal.requestFocus()
+            editTextLocal.requestFocus()
             return
         }
         val idCidade = spinnerCidadesF.selectedItemId
@@ -70,6 +71,11 @@ class NovoFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
             ).show()
             return
         }
+        Toast.makeText(
+            requireContext(),
+            R.string.foco_contagio_guardado_sucesso,
+            Toast.LENGTH_LONG
+        ).show()
         navegaListaFocoContagio()
 
     }
