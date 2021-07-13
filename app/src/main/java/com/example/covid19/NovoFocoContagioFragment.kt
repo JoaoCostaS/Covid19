@@ -41,6 +41,7 @@ class NovoFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
 
+
     }
 
     fun navegaListaFocoContagio(){

@@ -41,6 +41,8 @@ class EditaFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
 
+        editTextLocal.setText(DadosApp.focoContagioSelecionado!!.local)
+
     }
     fun navegaListaFocoContagio(){
         findNavController().navigate(R.id.action_editaFocoContagioFragment_to_fragment_lista_foco_contagio)
@@ -160,7 +162,9 @@ class EditaFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         atualizaSpinerCidadesF(data)
+        atualizaCidadeSelecionada()
     }
+
 
     private fun atualizaSpinerCidadesF(data: Cursor?) {
         spinnerCidadesF.adapter = SimpleCursorAdapter(
@@ -185,6 +189,17 @@ class EditaFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
         atualizaSpinerCidadesF(null)
+    }
+    private fun atualizaCidadeSelecionada() {
+        val idCidade = DadosApp.focoContagioSelecionado!!.id_cidades
+
+        val ultimaCidade = spinnerCidadesF.count - 1
+        for (i in 0..ultimaCidade){
+            if (idCidade == spinnerCidadesF.getItemIdAtPosition(i)){
+                spinnerCidadesF.setSelection(i)
+                return
+            }
+        }
     }
     companion object {
         const val ID_LOADER_MANAGER_CIDADES = 0
