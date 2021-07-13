@@ -90,8 +90,8 @@ class EditaFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     }
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_novo_foco -> guardarFocoContagio()
-            R.id.action_cancelar_novo_foco  -> navegaListaFocoContagio()
+            R.id.action_guardar_edita_foco -> guardarFocoContagio()
+            R.id.action_cancelar_edita_foco  -> navegaListaFocoContagio()
             else -> return false
         }
         return true
