@@ -51,6 +51,7 @@
     <string name="erro_alterar_foco_contagio">Erro ao alterar foco contagio</string>
     <string name="foco_contagio_guardado_sucesso">Foco contagio guardado com sucesso</string>
     <string name="elimina_foco_contagio_fragment_label">Tem a certeza que quer eliminar?</string>
+    <string name="eliminar_foco">eliminar</string>
 
 
 </resources>
