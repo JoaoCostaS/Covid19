@@ -47,7 +47,7 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
         recyclerViewFocoContagio.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this)
-            .initLoader(Fragment_lista_foco_contagio.ID_LOADER_MANAGER_FOCO_CONTAGIO, null, this)
+            .initLoader(ID_LOADER_MANAGER_FOCO_CONTAGIO, null, this)
 
     }
 
@@ -60,6 +60,10 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
     fun navegaEliminarFocoContagio(){
 
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_novo_foco_contagio -> navegaNovoFocoContagio()
@@ -85,7 +89,7 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
             ContentProviderCovid.ENDERECO_FOCO_CONTAGIO,
             TabelaFocoContagio.TODAS_COLUNAS,
             null, null,
-            TabelaFocoContagio.CAMPO_ID_CIDADES
+            TabelaFocoContagio.CAMPO_LOCAL
         )
     }
 

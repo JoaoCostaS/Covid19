@@ -21,7 +21,7 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
     private lateinit var editTextInfetados: EditText
     private lateinit var editTextAtivos: EditText
     private lateinit var editTextObitos: EditText
-    private lateinit var editTextData: EditText
+   // private lateinit var editTextData: EditText
     private lateinit var spinnerCidade: Spinner
 
     override fun onCreateView(
@@ -39,7 +39,7 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         editTextInfetados = view.findViewById(R.id.editTextInfetados)
         editTextAtivos = view.findViewById(R.id.editTextAtivos)
         editTextObitos = view.findViewById(R.id.editTextObitos)
-        editTextData = view.findViewById(R.id.editTextData)
+       // editTextData = view.findViewById(R.id.editTextData)
         spinnerCidade = view.findViewById(R.id.spinnerCidade)
 
         LoaderManager.getInstance(this)
@@ -51,30 +51,30 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         findNavController().navigate(R.id.action_novoCasoFragment_to_fragment_lista_casos)
     }
     fun guardarCaso(){
-        val infetados = editTextInfetados.text.toString()
-        if (infetados.isEmpty()){
+        val infetados = editTextInfetados.text.toString().toInt()
+        if (infetados == null){
             editTextInfetados.setError(getString(R.string.infetados_obrigatorio))
             return
         }
-        val ativos = editTextAtivos.text.toString()
-        if (ativos.isEmpty()){
+        val ativos = editTextAtivos.text.toString().toInt()
+        if (ativos == null){
             editTextAtivos.setError(getString(R.string.ativos_obrigatorio))
             return
         }
-        val obitos = editTextObitos.text.toString()
-        if (obitos.isEmpty()){
+        val obitos = editTextObitos.text.toString().toInt()
+        if (obitos == null){
             editTextObitos.setError(getString(R.string.obitos_obrigatorio))
             return
-        }
+        }/*
         val data = editTextData.text.toString()
         if (data.isEmpty()){
             editTextData.setError(getString(R.string.data_obrigatoria))
             return
-        }
+        }*/
         val idCidade = spinnerCidade.selectedItemId
 
-        //val caso = Caso(infetados = infetados, ativos = ativos, obitos = obitos, data = data, id_cidades = idCidade)
-        //activity?.contentResolver.insert(ContentProviderCovid.ENDERECO_CASOS, caso.to)
+        val caso = Caso(infetados = infetados, ativos = ativos, obitos = obitos, /*data = data, */id_cidades = idCidade)
+        activity?.contentResolver?.insert(ContentProviderCovid.ENDERECO_CASOS, caso.toContentValues())
     }
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {

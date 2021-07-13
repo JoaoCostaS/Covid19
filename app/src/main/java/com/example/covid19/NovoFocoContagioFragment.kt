@@ -8,20 +8,23 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 
 
 class NovoFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    private lateinit var editTextCidadeF: EditText
+   // private lateinit var editTextCidadeF: EditText
     private lateinit var editTextLocal: EditText
     private lateinit var spinnerCidadesF: Spinner
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        DadosApp.fragment= this
         (activity as MainActivity).menuAtual = R.menu.menu_novo_foco_contagio
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_novo_foco_contagio, container, false)
@@ -30,7 +33,7 @@ class NovoFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editTextCidadeF = view.findViewById(R.id.editTextCidade)
+        //editTextCidadeF = view.findViewById(R.id.editTextCidade)
         editTextLocal = view.findViewById(R.id.editTextLocal)
         spinnerCidadesF = view.findViewById(R.id.spinnerCidadesF)
 
@@ -42,12 +45,37 @@ class NovoFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     fun navegaListaFocoContagio(){
         findNavController().navigate(R.id.action_novoFocoContagioFragment_to_fragment_lista_foco_contagio)
     }
-    fun guardar(){
+
+    fun guardarFocoContagio(){
+        val local = editTextLocal.text.toString()
+        if (local.isEmpty()){
+            editTextLocal.setError(getString(R.string.local_obrigatorio))
+            //editTextLocal.requestFocus()
+            return
+        }
+        val idCidade = spinnerCidadesF.selectedItemId
+
+        val focoContagio = FocoContagio(local = local, id_cidades = idCidade)
+
+        val uri = activity?.contentResolver?.insert(
+                ContentProviderCovid.ENDERECO_FOCO_CONTAGIO,
+                focoContagio.toContentValues()
+        )
+
+        if (uri == null){
+            Snackbar.make(
+                    editTextLocal,
+                    getString(R.string.erro_inserir_foco_contagio),
+                    Snackbar.LENGTH_LONG
+            ).show()
+            return
+        }
+        navegaListaFocoContagio()
 
     }
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_novo_foco -> guardar()
+            R.id.action_guardar_novo_foco -> guardarFocoContagio()
             R.id.action_cancelar_novo_foco  -> navegaListaFocoContagio()
             else -> return false
         }
@@ -122,7 +150,14 @@ class NovoFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     }
 
     private fun atualizaSpinerCidadesF(data: Cursor?) {
-        TODO("Not yet implemented")
+        spinnerCidadesF.adapter = SimpleCursorAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            data,
+            arrayOf(TabelaCidades.CAMPO_NOME),
+            intArrayOf(android.R.id.text1),
+            0
+        )
     }
 
     /**

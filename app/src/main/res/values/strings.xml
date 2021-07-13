@@ -46,5 +46,7 @@
     <string name="local">Local</string>
     <string name="guardarfoco">GuardarFoco</string>
     <string name="cancelarfoco">CancelarFoco</string>
+    <string name="local_obrigatorio">Preencha o local</string>
+    <string name="erro_inserir_foco_contagio">Erro ao inserir foco contagio</string>
 
 </resources>

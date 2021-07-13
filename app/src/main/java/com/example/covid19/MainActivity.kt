@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity() {
                 R.menu.menu_edita_cidade -> (DadosApp.fragment as EditaCidadeFragment).processedOpcaoMenu(item)
                 R.menu.menu_elimina_cidade -> (DadosApp.fragment as EliminaCidadeFragment).processedOpcaoMenu(item)
                 R.menu.menu_lista_casos -> (DadosApp.fragment as Fragment_lista_casos).processedOpcaoMenu(item)
-                R.menu.menu_novo_caso -> (DadosApp.fragment as Fragment_lista_casos).processedOpcaoMenu(item)
+                R.menu.menu_novo_caso -> (DadosApp.fragment as NovoCasoFragment).processedOpcaoMenu(item)
                 R.menu.menu_lista_foco_contagio -> (DadosApp.fragment as Fragment_lista_foco_contagio).processedOpcaoMenu(item)
-                R.menu.menu_novo_foco_contagio-> (DadosApp.fragment as Fragment_lista_foco_contagio).processedOpcaoMenu(item)
+                R.menu.menu_novo_foco_contagio-> (DadosApp.fragment as NovoFocoContagioFragment).processedOpcaoMenu(item)
                 else -> false
             }
         }

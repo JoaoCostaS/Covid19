@@ -248,14 +248,10 @@ class ContentProviderCovid : ContentProvider() {
         val bd = bdCovidOpenHelper!!.writableDatabase
 
         return when (getUriMacther().match(uri)){
-            /* URI_CIDADE_ESPECIFICA -> TabelaCidades(bd).query(
-                     projection as Array<String>,
-                     selection,
-                     selectionArgs as Array<String>?,
-                     null,
-                     null,
-                     null
-             )*/
+             URI_CIDADE_ESPECIFICA -> TabelaCidades(bd).delete(
+                     "${BaseColumns._ID}=?",
+                     arrayOf(uri.lastPathSegment!!),
+             )
 
             URI_CASOS_ESPECIFICOS -> TabelaCasos(bd).delete(
                     "${BaseColumns._ID}=?",
@@ -293,14 +289,11 @@ class ContentProviderCovid : ContentProvider() {
         val bd = bdCovidOpenHelper!!.writableDatabase
 
         return when (getUriMacther().match(uri)){
-           /* URI_CIDADE_ESPECIFICA -> TabelaCidades(bd).query(
-                    projection as Array<String>,
-                    selection,
-                    selectionArgs as Array<String>?,
-                    null,
-                    null,
-                    null
-            )*/
+            URI_CIDADE_ESPECIFICA -> TabelaCidades(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+            )
 
             URI_CASOS_ESPECIFICOS -> TabelaCasos(bd).update(
                     values!!,
