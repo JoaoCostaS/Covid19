@@ -74,7 +74,12 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         val idCidade = spinnerCidade.selectedItemId
 
         val caso = Caso(infetados = infetados, ativos = ativos, obitos = obitos, /*data = data, */id_cidades = idCidade)
-        activity?.contentResolver?.insert(ContentProviderCovid.ENDERECO_CASOS, caso.toContentValues())
+
+        val uri = activity?.contentResolver?.insert(
+            ContentProviderCovid.ENDERECO_CASOS,
+            caso.toContentValues()
+        )
+        navegaListaCasos()
     }
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {

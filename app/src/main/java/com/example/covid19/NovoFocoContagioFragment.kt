@@ -64,9 +64,9 @@ class NovoFocoContagioFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         if (uri == null){
             Snackbar.make(
-                    editTextLocal,
-                    getString(R.string.erro_inserir_foco_contagio),
-                    Snackbar.LENGTH_LONG
+                editTextLocal,
+                getString(R.string.erro_inserir_foco_contagio),
+                Snackbar.LENGTH_LONG
             ).show()
             return
         }
