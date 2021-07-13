@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_fragment_lista_foco_contagio_to_editaFocoContagioFragment"
             app:destination="@id/editaFocoContagioFragment" />
+        <action
+            android:id="@+id/action_fragment_lista_foco_contagio_to_eliminaFocoContagioFragment"
+            app:destination="@id/eliminaFocoContagioFragment" />
     </fragment>
     <fragment
         android:id="@+id/novaCidadeFragment"
@@ -120,6 +123,15 @@
         tools:layout="@layout/fragment_edita_foco_contagio" >
         <action
             android:id="@+id/action_editaFocoContagioFragment_to_fragment_lista_foco_contagio"
+            app:destination="@id/fragment_lista_foco_contagio" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminaFocoContagioFragment"
+        android:name="com.example.covid19.EliminaFocoContagioFragment"
+        android:label="@string/elimina_foco_contagio_fragment_label"
+        tools:layout="@layout/fragment_elimina_foco_contagio" >
+        <action
+            android:id="@+id/action_eliminaFocoContagioFragment_to_fragment_lista_foco_contagio"
             app:destination="@id/fragment_lista_foco_contagio" />
     </fragment>
 </navigation>

@@ -58,7 +58,7 @@ class Fragment_lista_foco_contagio : Fragment(),  LoaderManager.LoaderCallbacks<
         findNavController().navigate(R.id.action_fragment_lista_foco_contagio_to_editaFocoContagioFragment)
     }
     fun navegaEliminarFocoContagio(){
-
+        findNavController().navigate(R.id.action_fragment_lista_foco_contagio_to_eliminaFocoContagioFragment)
     }
     override fun onDestroyView() {
         super.onDestroyView()
