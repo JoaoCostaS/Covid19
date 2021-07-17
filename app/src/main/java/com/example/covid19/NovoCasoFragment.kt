@@ -2,7 +2,6 @@ package com.example.covid19
 
 import android.database.Cursor
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -10,10 +9,14 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
+import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
@@ -21,12 +24,12 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
     private lateinit var editTextInfetados: EditText
     private lateinit var editTextAtivos: EditText
     private lateinit var editTextObitos: EditText
-   // private lateinit var editTextData: EditText
+    private lateinit var editTextData: EditText
     private lateinit var spinnerCidade: Spinner
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         DadosApp.fragment= this
         (activity as MainActivity).menuAtual = R.menu.menu_novo_caso
@@ -39,7 +42,7 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         editTextInfetados = view.findViewById(R.id.editTextInfetados)
         editTextAtivos = view.findViewById(R.id.editTextAtivos)
         editTextObitos = view.findViewById(R.id.editTextObitos)
-       // editTextData = view.findViewById(R.id.editTextData)
+        editTextData = view.findViewById(R.id.editTextData)
         spinnerCidade = view.findViewById(R.id.spinnerCidade)
 
         LoaderManager.getInstance(this)
@@ -65,21 +68,27 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         if (obitos == null){
             editTextObitos.setError(getString(R.string.obitos_obrigatorio))
             return
-        }/*
-        val data = editTextData.text.toString()
-        if (data.isEmpty()){
-            editTextData.setError(getString(R.string.data_obrigatoria))
-            return
-        }*/
+        }
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val data: Date = formatter.parse(editTextData.text.toString())
+
         val idCidade = spinnerCidade.selectedItemId
 
-        val caso = Caso(infetados = infetados, ativos = ativos, obitos = obitos, /*data = data, */id_cidades = idCidade)
+        val caso = Caso(infetados = infetados, ativos = ativos, obitos = obitos, data = data, id_cidades = idCidade)
 
         val uri = activity?.contentResolver?.insert(
-            ContentProviderCovid.ENDERECO_CASOS,
-            caso.toContentValues()
+                ContentProviderCovid.ENDERECO_CASOS,
+                caso.toContentValues()
         )
-        navegaListaCasos()
+        if (uri == null){
+            Snackbar.make(
+                    editTextInfetados,
+                    getString(R.string.erro_inserir_caso),
+                    Snackbar.LENGTH_LONG
+            ).show()
+            return
+        }
+       navegaListaCasos()
     }
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
