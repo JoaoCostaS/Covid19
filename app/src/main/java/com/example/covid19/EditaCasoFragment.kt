@@ -50,6 +50,11 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
 
+       /* editTextInfetados.setText(DadosApp.casoSelecionado!!.infetados)
+        editTextAtivos.setText(DadosApp.casoSelecionado!!.ativos)
+        editTextObitos.setText(DadosApp.casoSelecionado!!.obitos)
+        editTextData.setText.(DadosApp.casoSelecionado!!.data )*/
+
     }
 
 
@@ -190,7 +195,10 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         atualizaSpinerCidades(data)
+        atualizaCidadeSelecionada()
     }
+
+
 
 
     /**
@@ -216,6 +224,17 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
             intArrayOf(android.R.id.text1),
             0
         )
+    }
+    private fun atualizaCidadeSelecionada() {
+        val idCidade = DadosApp.casoSelecionado!!.id_cidades
+
+        val ultimaCidade = spinnerCidade.count - 1
+        for (i in 0..ultimaCidade){
+            if(idCidade == spinnerCidade.getItemIdAtPosition(i)){
+                spinnerCidade.setSelection(i)
+                return
+            }
+        }
     }
 
     companion object {
