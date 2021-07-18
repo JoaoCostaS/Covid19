@@ -51,7 +51,7 @@ class Fragment_lista_casos : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> 
         findNavController().navigate(R.id.action_fragment_lista_casos_to_novoCasoFragment)
     }
     fun navegaAlterarCaso(){
-       // findNavController().navigate(R.id.action_listaCidadesFragment_to_editaCidadeFragment)
+        findNavController().navigate(R.id.action_fragment_lista_casos_to_editaCasoFragment)
     }
     fun navegaEliminarCaso(){
         //findNavController().navigate(R.id.action_listaCidadesFragment_to_eliminaCidadeFragment)
