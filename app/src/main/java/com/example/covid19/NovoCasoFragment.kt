@@ -57,16 +57,19 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         val infetados = editTextInfetados.text.toString().toInt()
         if (infetados == null){
             editTextInfetados.setError(getString(R.string.infetados_obrigatorio))
+            editTextInfetados.requestFocus()
             return
         }
         val ativos = editTextAtivos.text.toString().toInt()
         if (ativos == null){
             editTextAtivos.setError(getString(R.string.ativos_obrigatorio))
+            editTextAtivos.requestFocus()
             return
         }
         val obitos = editTextObitos.text.toString().toInt()
         if (obitos == null){
             editTextObitos.setError(getString(R.string.obitos_obrigatorio))
+            editTextObitos.requestFocus()
             return
         }
         val formatter = SimpleDateFormat("dd/MM/yyyy")
