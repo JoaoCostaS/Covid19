@@ -1,6 +1,7 @@
 package com.example.covid19
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
@@ -35,6 +37,7 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_edita_caso, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -50,23 +53,27 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
     }
 
 
-    fun navegaListaCasos(){
+    fun navegaListaCasos() {
         findNavController().navigate(R.id.action_editaCasoFragment_to_fragment_lista_casos)
     }
-    fun guardarCaso(){
+
+    fun guardarCaso() {
         val infetados = editTextInfetados.text.toString().toInt()
-        if (infetados == null){
+        if (infetados == null) {
             editTextInfetados.setError(getString(R.string.infetados_obrigatorio))
+            editTextInfetados.requestFocus()
             return
         }
         val ativos = editTextAtivos.text.toString().toInt()
-        if (ativos == null){
+        if (ativos == null) {
             editTextAtivos.setError(getString(R.string.ativos_obrigatorio))
+            editTextAtivos.requestFocus()
             return
         }
         val obitos = editTextObitos.text.toString().toInt()
-        if (obitos == null){
+        if (obitos == null) {
             editTextObitos.setError(getString(R.string.obitos_obrigatorio))
+            editTextObitos.requestFocus()
             return
         }
         val formatter = SimpleDateFormat("dd/MM/yyyy")
@@ -74,22 +81,41 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
 
         val idCidade = spinnerCidade.selectedItemId
 
-        val caso = Caso(infetados = infetados, ativos = ativos, obitos = obitos, data = data, id_cidades = idCidade)
+        val caso = DadosApp.casoSelecionado!!
 
-        val uri = activity?.contentResolver?.insert(
+        caso.infetados = infetados
+        caso.ativos = ativos
+        caso.obitos = obitos
+        caso.data = data
+        caso.id_cidades = idCidade
+
+        val uriCaso = Uri.withAppendedPath(
             ContentProviderCovid.ENDERECO_CASOS,
-            caso.toContentValues()
+            caso.id.toString()
         )
-        if (uri == null){
-            Snackbar.make(
-                editTextInfetados,
-                getString(R.string.erro_inserir_caso),
-                Snackbar.LENGTH_LONG
+
+        val registos = activity?.contentResolver?.update(
+            uriCaso,
+            caso.toContentValues(),
+            null,
+            null
+        )
+        if (registos != 1) {
+            Toast.makeText(
+                requireContext(),
+                R.string.erro_alterar_caso,
+                Toast.LENGTH_LONG
             ).show()
             return
         }
+        Toast.makeText(
+            requireContext(),
+            R.string.caso_guardado_sucesso,
+            Toast.LENGTH_LONG
+        ).show()
         navegaListaCasos()
     }
+
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_guardar_novo_caso -> guardarCaso()
@@ -167,7 +193,6 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
     }
 
 
-
     /**
      * Called when a previously created loader is being reset, and thus
      * making its data unavailable.  The application should at this point
@@ -196,7 +221,4 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
     companion object {
         const val ID_LOADER_MANAGER_CIDADES = 0
     }
-
-
-}
 }

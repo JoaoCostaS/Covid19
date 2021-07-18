@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -91,6 +92,11 @@ class NovoCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
             ).show()
             return
         }
+        Toast.makeText(
+            requireContext(),
+            R.string.caso_guardado_sucesso,
+            Toast.LENGTH_LONG
+        ).show()
        navegaListaCasos()
     }
     fun processedOpcaoMenu(item: MenuItem): Boolean {
