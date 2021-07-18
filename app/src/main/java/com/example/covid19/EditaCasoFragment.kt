@@ -123,8 +123,8 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
 
     fun processedOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_novo_caso -> guardarCaso()
-            R.id.action_cancelar_novo_caso -> navegaListaCasos()
+            R.id.action_guardar_edita_caso -> guardarCaso()
+            R.id.action_cancelar_edita_caso -> navegaListaCasos()
             else -> return false
         }
         return true

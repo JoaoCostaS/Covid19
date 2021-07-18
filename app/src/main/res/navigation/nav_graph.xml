@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_fragment_lista_casos_to_editaCasoFragment"
             app:destination="@id/editaCasoFragment" />
+        <action
+            android:id="@+id/action_fragment_lista_casos_to_eliminaCasoFragment"
+            app:destination="@id/eliminaCasoFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_lista_foco_contagio"
@@ -144,6 +147,15 @@
         tools:layout="@layout/fragment_edita_caso" >
         <action
             android:id="@+id/action_editaCasoFragment_to_fragment_lista_casos"
+            app:destination="@id/fragment_lista_casos" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminaCasoFragment"
+        android:name="com.example.covid19.EliminaCasoFragment"
+        android:label="@string/elimina_caso_fragment_label"
+        tools:layout="@layout/fragment_elimina_caso" >
+        <action
+            android:id="@+id/action_eliminaCasoFragment_to_fragment_lista_casos"
             app:destination="@id/fragment_lista_casos" />
     </fragment>
 </navigation>
