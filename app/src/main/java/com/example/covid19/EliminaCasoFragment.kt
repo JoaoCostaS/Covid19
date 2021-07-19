@@ -37,12 +37,12 @@ class EliminaCasoFragment : Fragment() {
         textViewDataC = view.findViewById(R.id.textViewDataC)
 
 
-         /*val caso = DadosApp.casoSelecionado!!
+         val caso = DadosApp.casoSelecionado!!
          textViewCidadeCa.setText(caso.nomeCidade)
-         textViewInfetadosC.setText(caso.infetados)
-         textViewAtivosC.setText(caso.ativos)
-         textViewObitosC.setText(caso.obitos)
-         textViewDataC.setText(caso.data.toString())*/
+         textViewInfetadosC.setText(caso.infetados.toString())
+         textViewAtivosC.setText(caso.ativos.toString())
+         textViewObitosC.setText(caso.obitos.toString())
+         textViewDataC.setText(caso.data.toString())
 
     }
     fun navegaListaCasos() {
