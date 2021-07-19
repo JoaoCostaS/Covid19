@@ -42,7 +42,7 @@ class EliminaCasoFragment : Fragment() {
          textViewInfetadosC.setText(caso.infetados)
          textViewAtivosC.setText(caso.ativos)
          textViewObitosC.setText(caso.obitos)
-         textViewDataC.setText(caso.data)*/
+         textViewDataC.setText(caso.data.toString())*/
 
     }
     fun navegaListaCasos() {

@@ -50,10 +50,10 @@ class EditaCasoFragment : Fragment(),  LoaderManager.LoaderCallbacks<Cursor> {
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_CIDADES, null, this)
 
-       /* editTextInfetados.setText(DadosApp.casoSelecionado!!.infetados)
+        /*editTextInfetados.setText(DadosApp.casoSelecionado!!.infetados)
         editTextAtivos.setText(DadosApp.casoSelecionado!!.ativos)
         editTextObitos.setText(DadosApp.casoSelecionado!!.obitos)
-        editTextData.setText.(DadosApp.casoSelecionado!!.data )*/
+        editTextData.setText.(DadosApp.casoSelecionado!!.data)*/
 
     }
 

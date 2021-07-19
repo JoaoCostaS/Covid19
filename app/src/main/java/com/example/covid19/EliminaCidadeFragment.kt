@@ -61,7 +61,6 @@ class EliminaCidadeFragment : Fragment() {
             R.string.cidade_eliminada_sucesso,
             Toast.LENGTH_LONG
         ).show()
-        //return
         navegaListaCidades()
     }
     fun processedOpcaoMenu(item: MenuItem): Boolean {
