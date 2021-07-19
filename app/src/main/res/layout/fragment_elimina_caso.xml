@@ -20,7 +20,7 @@
         android:textColor="@color/cor_destaque" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textViewCidadeCa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_ecran"
@@ -45,7 +45,7 @@
         android:textColor="@color/cor_destaque" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewInfetadosC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_ecran"
@@ -70,7 +70,7 @@
         android:textColor="@color/cor_destaque" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textViewAtivosC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_ecran"
@@ -95,7 +95,7 @@
         android:textColor="@color/cor_destaque" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textViewObitosC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_ecran"
@@ -120,7 +120,7 @@
         android:textColor="@color/cor_destaque" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textViewDataC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_ecran"

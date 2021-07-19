@@ -60,6 +60,8 @@
     <string name="erro_alterar_caso">Erro ao alterar caso</string>
     <string name="caso_guardado_sucesso">Caso guardado com sucesso</string>
     <string name="elimina_caso_fragment_label">Eliminar Caso?</string>
+    <string name="erro_eliminar_caso">Erro ao eliminar caso</string>
+    <string name="caso_eliminado_sucesso">Caso eliminado sucesso</string>
 
 
 </resources>
